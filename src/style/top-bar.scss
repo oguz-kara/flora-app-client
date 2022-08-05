@@ -1,0 +1,143 @@
+@import 'variables.scss';
+
+.topbar {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid #00000010;
+  background-color: $primary-background;
+  color: $primary-text;
+  flex: 10;
+  z-index: 100;
+}
+
+.topbar__menu {
+  display: none;
+  align-items: center;
+  height: 90px;
+  padding-left: 15px;
+  width: 100%;
+  max-width: 40px;
+}
+
+.topbar__menu-button {
+  transition: all 100ms ease;
+  color: $primary-text;
+  display: none;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 10px;
+  color: $primary-text;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  max-width: 300px;
+}
+
+.actions__notifications {
+  display: flex;
+}
+
+.actions__notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.actions__icon-container {
+  display: inline-block;
+  color: $primary-text-5;
+}
+
+.actions__circle {
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  background: $success-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+}
+
+.actions__account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.actions__avatar {
+  border-radius: 5px;
+}
+
+.actions__avatar img {
+  max-width: 50px;
+  border-radius: 5px;
+}
+
+.actions__content {
+  padding: 10px 20px 10px 10px;
+}
+
+.actions__content h4 {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 4px;
+}
+.actions__content div {
+  color: $primary-text-4;
+  font-size: 12px;
+}
+
+.actions__drop-down {
+  color: $primary-text-5;
+}
+
+@media only screen and (max-width: 766px) {
+  html {
+    font-size: 14px;
+  }
+
+  .topbar {
+    justify-content: space-between;
+  }
+
+  .topbar__menu {
+    display: flex;
+  }
+
+  .topbar__menu-button {
+    display: block;
+  }
+
+  .actions__icon-container {
+    position: initial;
+  }
+
+  .actions__avatar img {
+    max-width: 35px;
+    border-radius: 5px;
+  }
+}

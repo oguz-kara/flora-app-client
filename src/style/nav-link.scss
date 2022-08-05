@@ -1,0 +1,27 @@
+@import './variables.scss';
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding-left: 10px;
+  text-decoration: none;
+  color: $primary-text;
+  display: block;
+  padding: 10px;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.nav-link span {
+  color: $primary-text-8;
+}
+
+.nav-link--active {
+  background-color: $primary-background-light;
+}
+
+.nav-link--active span {
+  color: $primary-text;
+}

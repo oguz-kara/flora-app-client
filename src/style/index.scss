@@ -1,0 +1,50 @@
+@import './variables.scss';
+
+:root {
+  --toastify-color-light: #3c3e49 !important;
+
+  --toastify-toast-background: #3c3e49 !important;
+
+  --toastify-text-color-dark: #3c3e49 !important;
+
+  //Used only for colored theme
+  --toastify-text-color-info: #3c3e49 !important;
+  --toastify-text-color-success: #3c3e49 !important;
+  --toastify-text-color-warning: #3c3e49 !important;
+  --toastify-text-color-error: #3c3e49 !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+  color: $primary-text;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $primary-background-dark;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+button:active {
+  border: none;
+  outline: none;
+}
+button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}

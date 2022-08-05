@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+.image-uploads-label {
+  padding: 10px;
+  background-color: $primary-background;
+  display: inline-block;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#image-uploads {
+  display: none;
+}
+
+.image-preview {
+}
+
+.image-preview-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-preview__image {
+  border: 3px solid $primary-color;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}

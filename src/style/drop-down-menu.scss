@@ -1,0 +1,22 @@
+@import './variables.scss';
+
+.dropdown-menu {
+  position: relative;
+}
+
+.dropdown-header {
+}
+
+.dropdown-body {
+  position: absolute;
+  right: 0;
+}
+
+@media only screen and (max-width: 766px) {
+  .dropdown-menu {
+    position: initial;
+  }
+  .dropdown-body {
+    left: 0;
+  }
+}

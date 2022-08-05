@@ -1,0 +1,9 @@
+@import './variables.scss';
+
+label {
+  display: block;
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: $primary-text-7;
+}

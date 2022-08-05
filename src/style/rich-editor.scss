@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+.toolbarClassName {
+  background-color: $primary-background !important;
+  border: none !important;
+  border-bottom: 1px solid $primary-background-light !important;
+}
+.wrapperClassName {
+  background-color: $primary-background;
+}
+
+.editorClassName {
+  background-color: $primary-background;
+  height: 300px !important;
+  padding: 25px;
+  color: $primary-text !important;
+}
+
+.testing {
+  background-color: red !important;
+}

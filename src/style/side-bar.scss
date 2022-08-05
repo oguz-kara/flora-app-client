@@ -1,0 +1,88 @@
+@import 'variables.scss';
+
+.sidebar {
+  border-bottom: 1px solid #00000010;
+  background-color: $primary-background;
+  color: $primary-text;
+  z-index: 15;
+  overflow: auto;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.sidebar__logo {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.sidebar__list {
+  list-style-type: none;
+  padding: 0;
+  font-size: 16px;
+}
+
+.sidebar__body {
+  padding: 30px;
+  height: 100%;
+}
+
+.sidebar__link-list {
+  list-style-type: none;
+  padding-left: 10px;
+  transition: max-height 200ms linear;
+}
+
+.sidebar__list-item {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sidebar__link-text {
+  padding-left: 10px;
+}
+
+@media only screen and (max-width: 766px) {
+  .sidebar__menu-button {
+    display: block;
+  }
+
+  .sidebar__logo {
+    display: none;
+  }
+
+  .sidebar__active {
+    transition: width 150ms linear;
+    position: fixed;
+    width: 65%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .sidebar__passive {
+    width: 0;
+    overflow: hidden;
+  }
+
+  .sidebar__logo {
+    display: none;
+  }
+}

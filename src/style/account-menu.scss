@@ -1,0 +1,100 @@
+@import './variables.scss';
+
+.account-menu__search {
+  padding: 25px;
+  max-width: 90vw;
+  width: 400px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: $primary-background;
+  box-shadow: -1px 0px 34px 0px $primary-background-dark;
+  -webkit-box-shadow: -1px 0px 34px 0px $primary-background-dark;
+  -moz-box-shadow: -1px 0px 34px 0px $primary-background-dark;
+  cursor: default;
+}
+
+.account-menu__search-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.account-menu__separator {
+  border-bottom: 1px solid $border-color;
+}
+
+.account-menu__search-icon {
+}
+
+.account-menu__search-input {
+  border: none;
+  width: 100%;
+  padding: 15px;
+  background-color: transparent;
+  color: $primary-text;
+  font-size: 16px;
+  font-weight: bold;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $primary-text;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.account-menu__section-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: $text-muted;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.account-menu__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+.account-menu__list-item {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.account-menu__list-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+  padding-right: 15px;
+}
+
+.account-menu__list-content {
+}
+
+.account-menu__list-content__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: $primary-text;
+}
+
+.account-menu__list-content__subtitle {
+  font-size: 16px;
+  margin: 5px 0;
+  color: $text-muted;
+  font-weight: 500;
+}
+
+.account-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}

@@ -1,0 +1,48 @@
+@import 'variables.scss';
+
+.App {
+}
+
+.main {
+  padding: 50px 50px 50px 360px;
+}
+
+.right-side {
+  width: 100%;
+}
+
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
+.sidebar-imitation {
+  background-color: $primary-background;
+  height: 200vh;
+  width: 400px;
+  padding: 30px 30px 30px 50px;
+  background-color: red;
+}
+
+.success-color {
+  color: $success-color !important;
+}
+
+.submit-form-button {
+  background-color: $primary-color;
+  padding: 10px 30px;
+  font-size: 18px;
+  color: $primary-text;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+
+@media only screen and (max-width: 766px) {
+  .main {
+    padding: 30px;
+  }
+}

@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+.table {
+  width: 100%;
+  background-color: $primary-background;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.thead {
+}
+
+.tbody {
+}
+
+.tr {
+}
+
+.th {
+  border-bottom: 1px dashed $primary-text-1;
+  text-align: left;
+  padding-bottom: 20px;
+  font-size: 14px;
+}
+
+.td {
+  border-bottom: 1px dashed $primary-text-1;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 400;
+}

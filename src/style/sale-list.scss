@@ -1,0 +1,40 @@
+@import './variables.scss';
+
+.sale-list {
+}
+
+.sale-list__list {
+  list-style-type: none;
+}
+
+.sale-list__list-item {
+  display: flex;
+  padding: 20px;
+  background-color: $primary-background;
+  margin-bottom: 30px;
+}
+
+.sale-list__list-item__left {
+  flex: 1;
+  border-right: 1px groove $primary-text-1;
+}
+
+.sale-list__info {
+}
+
+.sale-list__info__title {
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.sale-list__info__value.date {
+  background-color: $primary-background-dark;
+}
+
+.sale-list__info__value {
+}
+
+.sale-list__list-item__right {
+  flex: 2;
+}
