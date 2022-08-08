@@ -12,6 +12,7 @@ import AddNewProduct from './pages/AddNewProduct';
 import ProductList from './pages/ProductList';
 import SaleList from './pages/SaleList';
 import ProductSaleList from './pages/ProductSaleList';
+import AddNewOrder from './pages/AddNewOrder';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -37,6 +38,7 @@ function App() {
               <Route path="/product-list" element={<ProductList />} />
               <Route path="/sales-list" element={<SaleList />} />
               <Route path="/product-sales" element={<ProductSaleList />} />
+              <Route path="/add-new-order" element={<AddNewOrder />} />
             </Routes>
           </div>
         </div>

@@ -41,7 +41,7 @@ export default function FileInputPreview() {
           multiple
         />
       </div>
-      <div class="image-preview">
+      <div className="image-preview">
         {preview.length > 0 ? (
           <>
             <Label>Image preview:</Label>

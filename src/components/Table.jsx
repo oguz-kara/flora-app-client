@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import '../style/table.scss';
 
 export function THead({ children, ...props }) {
@@ -24,21 +25,27 @@ export function Th({ children, ...props }) {
   );
 }
 
-export function Tr({ children, ...props }) {
+export const Tr = forwardRef(({ children, className, ...props }, ref) => {
+  const mergeClassListProp = () => {
+    if (className) {
+      return `tr ${className}`;
+    }
+    return 'tr';
+  };
   return (
-    <tr className="tr" {...props}>
+    <tr className={mergeClassListProp()} {...props} ref={ref}>
       {children}
     </tr>
   );
-}
+});
 
-export function Td({ children, ...props }) {
+export const Td = forwardRef(({ children, ...props }, ref) => {
   return (
-    <td className="td" {...props}>
+    <td className="td" {...props} ref={ref}>
       {children}
     </td>
   );
-}
+});
 
 export default function Table({ children, ...props }) {
   return (

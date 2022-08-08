@@ -1,0 +1,20 @@
+@import './variables.scss';
+
+.data-cell-input {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.data-cell-input__selected-data {
+  background-color: $primary-light-color;
+}
+
+.data-cell-input__selected-data input {
+  color: rgba($color: #000000, $alpha: 0.7);
+}

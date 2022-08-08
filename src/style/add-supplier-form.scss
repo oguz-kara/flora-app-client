@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+.add-supplier-form {
+  width: 500px;
+  border-radius: 10px;
+  background-color: $primary-background-dark;
+  z-index: 100;
+}
+
+.add-supplier-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  z-index: -1;
+}

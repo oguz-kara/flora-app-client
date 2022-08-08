@@ -19,13 +19,14 @@
 .th {
   border-bottom: 1px dashed $primary-text-1;
   text-align: left;
-  padding-bottom: 20px;
+  padding: 10px 5px;
   font-size: 14px;
+  color: $primary-color;
 }
 
 .td {
   border-bottom: 1px dashed $primary-text-1;
-  padding: 10px 0;
+  padding: 10px 5px;
   font-size: 15px;
   font-weight: 400;
 }

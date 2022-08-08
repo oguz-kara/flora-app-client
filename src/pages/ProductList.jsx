@@ -1,5 +1,5 @@
 import '../style/product-list.scss';
-import { FormContainer, InputGroup } from '../components/Container';
+import { FormContainer, InputContainer } from '../components/Container';
 import Label from '../components/Label';
 import Table, { TBody, Td, Th, THead, Tr } from '../components/Table';
 import TextBox from '../components/TextBox';
@@ -12,10 +12,10 @@ export default function ProductList() {
         Products {'>'} Product list
       </h4>
       <FormContainer>
-        <InputGroup>
+        <InputContainer>
           <Label>Search (?):</Label>
           <TextBox fullWidth placeholder="Search for products..." />
-        </InputGroup>
+        </InputContainer>
         <Table>
           <THead>
             <Tr>

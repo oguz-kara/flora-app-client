@@ -23,7 +23,7 @@ export function FormContainer({ center = false, ...props }) {
   );
 }
 
-export function InputGroup({ center = false, ...props }) {
+export function InputContainer({ center = false, ...props }) {
   const getClassList = () => {
     return 'input-group'
   };
