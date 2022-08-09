@@ -1,5 +1,4 @@
 import RichEditor from '../RichEditor';
-import '../../style/add-product-form.scss';
 import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
@@ -59,6 +58,7 @@ export default function AddProductForm() {
           style={{ padding: 20 }}
           onSubmit={(e) => handleCategoryFormSubmit(e)}
           title="-> New category form"
+          className="card"
         />
       </Modal>
       <Modal active={activeAddBrandForm} setActive={setActiveAddBrandForm}>
@@ -66,6 +66,7 @@ export default function AddProductForm() {
           style={{ padding: 20 }}
           onSubmit={(e) => handleBrandFormSubmit(e)}
           title="-> New brand form"
+          className="card"
         />
       </Modal>
       <Modal
@@ -76,6 +77,7 @@ export default function AddProductForm() {
           style={{ padding: 20 }}
           onSubmit={(e) => handleSupplierFormSubmit(e)}
           title="-> New supplier form"
+          className="card"
         />
       </Modal>
       <FormContainer>
@@ -109,7 +111,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Supplier name (*):</Label>
-          <div className="actions-container">
+          <div className="flex-box">
             <Select
               placeholder="Select a product supplier. If supplier not exists you can create it by pressing '+' button."
               options={[
@@ -129,7 +131,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Brand name (*):</Label>
-          <div className="actions-container">
+          <div className="flex-box">
             <Select
               placeholder="Select a product brand. If brand not exists you can create it by pressing '+' button."
               options={[
@@ -158,7 +160,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Main unit name (*):</Label>
-          <div className="actions-container">
+          <div className="flex-box">
             <Select
               placeholder="Select a main unit. If main unit not exists you can create it by pressing '+' button."
               options={[
@@ -184,7 +186,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Add sub units (?):</Label>
-          <div className="actions-container">
+          <div className="flex-box">
             <Select
               placeholder="Select a sub units. If sub units not exists you can create it by pressing '+' button."
               isMulti

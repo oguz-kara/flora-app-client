@@ -1,3 +1,4 @@
+import mergeClasses from '../utils/mergeClasses';
 import { forwardRef } from 'react';
 import '../style/table.scss';
 
@@ -17,9 +18,9 @@ export function TBody({ children, ...props }) {
   );
 }
 
-export function Th({ children, ...props }) {
+export function Th({ children, className, ...props }) {
   return (
-    <th className="th" {...props}>
+    <th className={mergeClasses(['th', className])} {...props}>
       {children}
     </th>
   );
@@ -47,10 +48,9 @@ export const Td = forwardRef(({ children, ...props }, ref) => {
   );
 });
 
-export default function Table({ children, ...props }) {
+export default function Table({ children, className, ...props }) {
   return (
-    <table className="table" {...props}>
-      {' '}
+    <table className={mergeClasses(['table', className])} {...props}>
       {children}
     </table>
   );

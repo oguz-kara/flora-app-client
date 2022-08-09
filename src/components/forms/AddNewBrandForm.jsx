@@ -1,4 +1,3 @@
-import '../../style/add-brand-form.scss';
 import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';

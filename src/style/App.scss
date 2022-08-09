@@ -49,6 +49,14 @@
   display: flex;
 }
 
+.flex1 {
+  flex: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .add-new-button {
   background-color: $primary-background-light;
   font-size: 20px;
@@ -56,7 +64,87 @@
   width: 50px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  background-color: $secondary-color;
   //   flex: 1;
+}
+
+.small-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card {
+  width: 500px;
+  border-radius: 10px;
+  background-color: $primary-background-dark;
+  z-index: 100;
+}
+
+.tag {
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom-right-radius: 5px;
+  background-color: $primary-light-color;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.primary-text {
+  color: $primary-text !important;
+}
+
+.secondary-text {
+  color: $secondary-text !important;
+}
+
+.primary-color {
+  color: $primary-color;
+}
+
+.secondary-color {
+  color: $secondary-color;
+}
+
+.primary-color-background {
+  background-color: $primary-color !important;
+}
+
+.primary-dark-color-background {
+  background-color: $primary-dark-color !important;
+}
+
+.secondary-color-background {
+  background-color: $secondary-color !important;
+}
+
+.secondary-dark-color-background {
+  background-color: $secondary-dark-color !important;
+}
+
+.secondary-light-color-background {
+  background-color: $secondary-color !important;
+}
+
+.transparent-background {
+  background-color: transparent !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.p20 {
+  padding: 20px !important;
+}
+
+.mb15 {
+  margin-bottom: 15px !important;
+}
+
+.mr15 {
+  margin-right: 15px !important;
 }
 
 @media only screen and (max-width: 766px) {

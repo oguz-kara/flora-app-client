@@ -3,13 +3,12 @@ import Label from '../Label';
 import { FormContainer, InputContainer } from '../Container';
 import Select from '../Select';
 import ReactTooltip from 'react-tooltip';
-import DatePicker from '../DatePicker';
 import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
 import AddNewCustomerForm from './AddNewCustomerForm';
+import TextArea from '../TextArea';
 
-export default function AddNewOrderForm() {
-  const [dateTobeDelivered, setDateTobeDelivered] = useState(new Date());
+export default function AddNewCustomerPurchaseForm() {
   const [activeAddCustomerForm, setActiveAddCustomerForm] = useState(false);
 
   const handleNewCustomerFormSubmit = () => {
@@ -60,19 +59,19 @@ export default function AddNewOrderForm() {
             </div>
           </InputContainer>
           <InputContainer>
-            <Label>Date to be delivered (*):</Label>
-            <DatePicker
-              selected={dateTobeDelivered}
-              onChange={(date) => setDateTobeDelivered(date)}
-            />
+            <Label>Purchase description (*):</Label>
+            <TextArea fullWidth placeholder="Add description for purchase..." />
           </InputContainer>
           <InputContainer>
-            <Label>Order list (*):</Label>
+            <Label>Product list (*):</Label>
             <TableWithInputs
               headers={[
+                { name: 'barcode', input: true },
                 { name: 'name', input: true },
+                { name: 'unit', input: true },
                 { name: 'qty', input: true },
-                { name: 'description', input: false },
+                { name: 'supplier price', input: false },
+                { name: 'sale price', input: false },
               ]}
               initialValues={{
                 id: Date.now(),

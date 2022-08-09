@@ -1,5 +1,4 @@
 import AddNewOrderForm from '../components/forms/AddNewOrderForm';
-import '../style/add-new-order.scss';
 
 export default function AddNewOrder() {
   return (

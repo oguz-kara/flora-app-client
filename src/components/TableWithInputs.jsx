@@ -52,8 +52,25 @@ export default function TableWithInputs({ headers, initialValues }) {
   };
 
   const handleDataCellInputKeydown = ({ code }) => {
-    if (code === 'Delete' && data.length > 1)
-      deleteItemFromData(selectedData.id);
+    if (code === 'Delete' && data.length > 1) {
+      const id = selectedData.id;
+
+      // get index of selected data
+      const index = data.findIndex((item) => item.id === id);
+
+      // check is selected data last item on the data state ?
+      if (data[data.length - 1].id === id) {
+        setSelectedData(data[data.length - 2]);
+      } else {
+        // set selected data with
+        setSelectedData((prev) => {
+          const index = data.findIndex((item) => item.id === prev.id);
+          return data[index + 1];
+        });
+      }
+
+      deleteItemFromData(id);
+    }
   };
 
   useEffect(() => {}, [selectedData]);
@@ -74,7 +91,7 @@ export default function TableWithInputs({ headers, initialValues }) {
     const obj = {
       id: Date.now(),
     };
-    arr.forEach((item) => (obj[item] = ''));
+    arr.forEach((item) => (obj[item.name] = ''));
     return obj;
   }
 
@@ -87,14 +104,14 @@ export default function TableWithInputs({ headers, initialValues }) {
   }
 
   if (headers === undefined || headers.length === 0)
-    throw new Error('Headers prop of TableWithInputs cannot be empty!');
+    throw new Error('headers prop of TableWithInputs cannot be empty!');
 
   return (
     <Table>
       <THead>
         <Tr>
           {headers.map((header) => (
-            <Th key={header}>#{header}</Th>
+            <Th key={header.name}>#{header.name}</Th>
           ))}
         </Tr>
       </THead>
@@ -106,17 +123,23 @@ export default function TableWithInputs({ headers, initialValues }) {
             className={getSelectedDataStyles(item.id)}
           >
             <>
-              {headers.map((header, index) => (
-                <Td key={index}>
-                  <DataCellInput
-                    value={item[header]}
-                    onChange={(e) => handleInputChange(e, item.id, header)}
-                    onFocus={(e) => handleDataCellInputFocus(e, item)}
-                    onBlur={(e) => handleDataCellInputBlur()}
-                    onKeyDown={(e) => handleDataCellInputKeydown(e)}
-                  />
-                </Td>
-              ))}
+              {headers.map((header, index) => {
+                if (header.input)
+                  return (
+                    <Td key={index}>
+                      <DataCellInput
+                        value={item[header.name]}
+                        onChange={(e) =>
+                          handleInputChange(e, item.id, header.name)
+                        }
+                        onFocus={(e) => handleDataCellInputFocus(e, item)}
+                        onBlur={(e) => handleDataCellInputBlur()}
+                        onKeyDown={(e) => handleDataCellInputKeydown(e)}
+                      />
+                    </Td>
+                  );
+                else return <Td>{item[header.name]}</Td>;
+              })}
             </>
           </Tr>
         ))}
