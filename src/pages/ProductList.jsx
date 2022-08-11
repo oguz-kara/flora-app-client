@@ -1,13 +1,43 @@
+import ProductForm from '../components/forms/ProductForm';
+import Modal from '../components/Modal';
+import ReactTooltip from 'react-tooltip';
 import '../style/product-list.scss';
 import { FormContainer, InputContainer } from '../components/Container';
 import Label from '../components/Label';
 import Table, { TBody, Td, Th, THead, Tr } from '../components/Table';
 import TextBox from '../components/TextBox';
 import { Link } from 'react-router-dom';
+import DropDownMenu, {
+  DropDownBody,
+  DropDownHeader,
+} from '../components/DropDownMenu';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faClose } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
 export default function ProductList() {
+  const [activeAddProductForm, setActiveAddProductForm] = useState(false);
+
+  const handleUpdateProductClick = (e) => {
+    e.preventDefault();
+    setActiveAddProductForm(true);
+  };
+
+  const handleProductFormSubmit = (e) => {
+    e.preventDefault();
+    setActiveAddProductForm(false);
+  };
+
   return (
     <div>
+      <Modal active={activeAddProductForm} setActive={setActiveAddProductForm}>
+        <ProductForm
+          onSubmit={(e) => handleProductFormSubmit(e)}
+          title="-> New Product form"
+          style={{ overFlow: 'hidden' }}
+          className="background-dark"
+        />
+      </Modal>
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Products {'>'} Product list
       </h4>
@@ -19,11 +49,11 @@ export default function ProductList() {
         <Table>
           <THead>
             <Tr>
-              <Th>#Image</Th>
-              <Th>#Name</Th>
-              <Th>#Unit</Th>
-              <Th>#Qty</Th>
-              <Th>#Price</Th>
+              <Th>#image</Th>
+              <Th>#name</Th>
+              <Th>#unit</Th>
+              <Th>#qty</Th>
+              <Th>#price</Th>
             </Tr>
           </THead>
           <TBody>
@@ -41,6 +71,12 @@ export default function ProductList() {
               <Td>kg</Td>
               <Td>100</Td>
               <Td>₺20</Td>
+              <Td>
+                <button>
+                  <FontAwesomeIcon data-tip="delete product" icon={faClose} />
+                </button>
+                <ReactTooltip effect="solid" />
+              </Td>
             </Tr>
             <Tr>
               <Td>
@@ -56,6 +92,12 @@ export default function ProductList() {
               <Td>piece</Td>
               <Td>5</Td>
               <Td>₺299</Td>
+              <Td>
+                <button>
+                  <FontAwesomeIcon data-tip="delete product" icon={faClose} />
+                </button>
+                <ReactTooltip effect="solid" />
+              </Td>
             </Tr>
             <Tr>
               <Td>
@@ -71,6 +113,12 @@ export default function ProductList() {
               <Td>piece</Td>
               <Td>10</Td>
               <Td>₺49</Td>
+              <Td>
+                <button>
+                  <FontAwesomeIcon data-tip="delete product" icon={faClose} />
+                </button>
+                <ReactTooltip effect="solid" />
+              </Td>
             </Tr>
             <Tr>
               <Td>
@@ -86,6 +134,12 @@ export default function ProductList() {
               <Td>piece</Td>
               <Td>100</Td>
               <Td>₺14</Td>
+              <Td>
+                <button>
+                  <FontAwesomeIcon data-tip="delete product" icon={faClose} />
+                </button>
+                <ReactTooltip effect="solid" />
+              </Td>
             </Tr>
           </TBody>
         </Table>

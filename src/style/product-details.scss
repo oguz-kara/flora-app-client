@@ -1,8 +1,6 @@
 @import './variables.scss';
 
 .product-details {
-  display: flex;
-  flex-wrap: wrap;
   background-color: $primary-background;
   padding: 50px;
 }
@@ -14,9 +12,6 @@
   border-radius: 10px;
   max-width: 300px;
   height: 40vh;
-}
-
-.product-details__content {
 }
 
 .product-details__content__header {

@@ -19,13 +19,6 @@
   margin-bottom: 15px;
 }
 
-.search-menu__separator {
-  border-bottom: 1px solid $border-color;
-}
-
-.search-menu__search-icon {
-}
-
 .search-menu__search-input {
   border: none;
   width: 100%;
@@ -57,11 +50,6 @@
   padding: 0;
   list-style-type: none;
   text-align: left;
-}
-
-.search-menu__list-item {
-  display: flex;
-  margin-bottom: 20px;
 }
 
 .search-menu__list-image {

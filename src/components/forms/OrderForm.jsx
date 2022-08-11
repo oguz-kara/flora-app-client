@@ -3,20 +3,21 @@ import Label from '../Label';
 import { FormContainer, InputContainer } from '../Container';
 import Select from '../Select';
 import ReactTooltip from 'react-tooltip';
+import DatePicker from '../DatePicker';
 import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
-import AddNewSupplierForm from './AddNewSupplierForm';
-import TextArea from '../TextArea';
+import AddNewCustomerForm from './CustomerForm';
 
-export default function AddNewSupplierPurchaseForm() {
-  const [activeAddSupplierForm, setActiveAddSupplierForm] = useState(false);
+export default function OrderForm() {
+  const [dateTobeDelivered, setDateTobeDelivered] = useState(new Date());
+  const [activeAddCustomerForm, setActiveAddCustomerForm] = useState(false);
 
-  const handleNewSupplierFormSubmit = () => {
-    setActiveAddSupplierForm(false);
+  const handleNewCustomerFormSubmit = () => {
+    setActiveAddCustomerForm(false);
   };
 
-  const handleAddNewSupplierClick = () => {
-    setActiveAddSupplierForm(true);
+  const handleAddNewCustomerClick = () => {
+    setActiveAddCustomerForm(true);
   };
 
   const handleSubmit = (e) => {
@@ -26,32 +27,32 @@ export default function AddNewSupplierPurchaseForm() {
   return (
     <>
       <Modal
-        active={activeAddSupplierForm}
-        setActive={setActiveAddSupplierForm}
+        active={activeAddCustomerForm}
+        setActive={setActiveAddCustomerForm}
       >
-        <AddNewSupplierForm
+        <AddNewCustomerForm
           style={{ padding: 20 }}
-          onSubmit={(e) => handleNewSupplierFormSubmit(e)}
-          title="-> New Supplier form"
+          onSubmit={(e) => handleNewCustomerFormSubmit(e)}
+          title="-> New customer form"
           className="card"
         />
       </Modal>
       <div className="add-new-order-form">
         <FormContainer onSubmit={handleSubmit}>
           <InputContainer>
-            <Label>Supplier name (*):</Label>
+            <Label>Customer name (*):</Label>
             <div className="flex-box">
               <Select
-                placeholder="Select a supplier name..."
+                placeholder="Select a customer name..."
                 options={[
                   { value: '1', label: 'Unal Kuafor' },
                   { value: '2', label: 'Meral able' },
                 ]}
               ></Select>
               <button
-                data-tip="Add new supplier"
+                data-tip="Add new customer"
                 className="add-new-button"
-                onClick={handleAddNewSupplierClick}
+                onClick={handleAddNewCustomerClick}
               >
                 +
               </button>
@@ -59,19 +60,19 @@ export default function AddNewSupplierPurchaseForm() {
             </div>
           </InputContainer>
           <InputContainer>
-            <Label>Purchase description (*):</Label>
-            <TextArea fullWidth placeholder="Add description for purchase..." />
+            <Label>Date to be delivered (*):</Label>
+            <DatePicker
+              selected={dateTobeDelivered}
+              onChange={(date) => setDateTobeDelivered(date)}
+            />
           </InputContainer>
           <InputContainer>
-            <Label>Product list (*):</Label>
+            <Label>Order list (*):</Label>
             <TableWithInputs
               headers={[
-                { name: 'barcode', input: true },
                 { name: 'name', input: true },
-                { name: 'unit', input: true },
                 { name: 'qty', input: true },
-                { name: 'supplier price', input: false },
-                { name: 'sale price', input: false },
+                { name: 'description', input: false },
               ]}
               initialValues={{
                 id: Date.now(),

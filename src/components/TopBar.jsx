@@ -2,12 +2,12 @@ import DropDownMenu, { DropDownHeader, DropDownBody } from './DropDownMenu';
 import '../style/top-bar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBell,
   faChevronCircleDown,
   faSearch,
   faBars,
+  faUser,
+  faCircleUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
 import SearchMenu from './SearchMenu';
 import AccountMenu from './AccountMenu';
 
@@ -21,26 +21,13 @@ export default function TopBar({ onMenuClick }) {
           </button>
         </div>
         <div className="actions">
-          <div className="actions__notifications">
-            <div className="actions__notification">
-              <DropDownMenu top={90}>
-                <DropDownHeader>
-                  <div className="actions__icon-container">
-                    <FontAwesomeIcon icon={faSearch} size="xl" />
-                  </div>
-                </DropDownHeader>
-                <DropDownBody top={23} left={21}>
-                  <SearchMenu />
-                </DropDownBody>
-              </DropDownMenu>
-            </div>
-          </div>
           <DropDownMenu top={90}>
             <DropDownHeader className="actions__account">
               <div className="actions__avatar">
-                <img
-                  src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                  alt="avatar"
+                <FontAwesomeIcon
+                  icon={faCircleUser}
+                  size="2x"
+                  style={{ color: 'black' }}
                 />
               </div>
               <div className="actions__content">

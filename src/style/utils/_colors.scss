@@ -1,0 +1,101 @@
+@import '../variables.scss';
+
+.primary-text {
+  color: $primary-text !important;
+}
+
+.secondary-text {
+  color: $secondary-text !important;
+}
+
+.background {
+  background-color: $primary-background !important;
+}
+
+.background-dark {
+  background-color: $primary-background-dark !important;
+}
+
+.background-light {
+  background-color: $primary-background-light !important;
+}
+
+.background-success {
+  background-color: $success-color;
+}
+
+.background-success-dark {
+  background-color: $success-dark-color;
+}
+
+.success {
+  color: $success-color;
+}
+
+.success-dark {
+  color: $success-dark-color;
+}
+
+.success-light {
+  color: $success-light-color;
+}
+
+.danger {
+  color: $danger-color !important;
+}
+
+.warning {
+  color: $warning-color !important;
+}
+
+.background-danger {
+  background-color: $danger-color !important;
+}
+
+.primary-color {
+  color: $primary-color !important;
+}
+
+.primary-light-color {
+  color: $primary-light-color !important;
+}
+
+.primary-color {
+  color: $primary-color !important;
+}
+
+.primary-bg {
+  background-color: $primary-color !important;
+}
+
+.primary-dark-color-background {
+  background-color: $primary-dark-color !important;
+}
+
+.secondary-color {
+  color: $secondary-color !important;
+}
+
+.secondary-bg {
+  background-color: $secondary-color !important;
+}
+
+.secondary-dark-bg {
+  background-color: $secondary-dark-color !important;
+}
+
+.secondary-light-bg {
+  background-color: $secondary-color !important;
+}
+
+.transparent-background {
+  background-color: transparent !important;
+}
+
+.border {
+  border-bottom: 1px solid $border-color !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $border-color !important;
+}

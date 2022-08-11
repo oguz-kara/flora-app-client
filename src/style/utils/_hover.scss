@@ -1,0 +1,7 @@
+@import '../variables.scss';
+
+.hover-bg-light {
+  &:hover {
+    background-color: $primary-background-light !important;
+  }
+}

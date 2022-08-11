@@ -4,7 +4,7 @@ import { FormContainer, InputContainer } from '../Container';
 import Select from '../Select';
 import TextArea from '../TextArea';
 
-export default function AddBrandForm({ onSubmit, title = '', ...props }) {
+export default function ExpenseForm({ onSubmit, title = '', ...props }) {
   return (
     <div className="add-brand-form" {...props}>
       <h3 className="section-title">{title}</h3>

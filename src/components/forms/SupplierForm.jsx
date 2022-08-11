@@ -2,7 +2,7 @@ import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
 
-export default function AddSupplierForm({ onSubmit, title = '', ...props }) {
+export default function SupplierForm({ onSubmit, title = '', ...props }) {
   return (
     <div className="add-supplier-form" {...props}>
       <h3 className="section-title">{title}</h3>

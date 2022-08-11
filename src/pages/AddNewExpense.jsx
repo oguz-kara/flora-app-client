@@ -1,4 +1,4 @@
-import AddNewExpenseForm from '../components/forms/AddNewExpenseForm';
+import AddNewExpenseForm from '../components/forms/ExpenseForm';
 
 export default function AddNewProduct() {
   return (

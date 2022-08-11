@@ -3,7 +3,7 @@ import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
 import TextArea from '../TextArea';
 
-export default function AddBrandForm({ onSubmit, title = '', ...props }) {
+export default function BrandForm({ onSubmit, title = '', ...props }) {
   return (
     <div className="add-brand-form" {...props}>
       <h3 className="section-title">{title}</h3>

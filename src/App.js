@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 // pages
 import Dashboard from './pages/Dashboard';
 import AddNewProduct from './pages/AddNewProduct';
+import UpdateProduct from './pages/UpdateProduct';
 import ProductList from './pages/ProductList';
 import SaleList from './pages/SaleList';
 import ProductSaleList from './pages/ProductSaleList';
@@ -27,6 +28,8 @@ import ExpenseList from './pages/ExpenseList';
 import AddNewDestruction from './pages/AddNewDestruction';
 import DestructionList from './pages/DestructionList';
 import ProductDetails from './pages/ProductDetails';
+import SupplierDetails from './pages/SupplierDetails';
+import CustomerDetails from './pages/CustomerDetails';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -49,6 +52,7 @@ function App() {
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/add-new-product" element={<AddNewProduct />} />
+              <Route path="/update-product" element={<UpdateProduct />} />
               <Route path="/product-list" element={<ProductList />} />
               <Route path="/sales-list" element={<SaleList />} />
               <Route path="/product-sales" element={<ProductSaleList />} />
@@ -82,6 +86,8 @@ function App() {
               />
               <Route path="/destruction-list" element={<DestructionList />} />
               <Route path="/product-details" element={<ProductDetails />} />
+              <Route path="/supplier-details" element={<SupplierDetails />} />
+              <Route path="/customer-details" element={<CustomerDetails />} />
             </Routes>
           </div>
         </div>

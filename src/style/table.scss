@@ -2,8 +2,7 @@
 
 .table {
   width: 100%;
-  background-color: $primary-background;
-  border-radius: 4px;
+  background-color: transparent;
 }
 
 .thead {
@@ -16,7 +15,7 @@
 }
 
 .th {
-  border-bottom: 1px dashed $primary-text-1;
+  // border-bottom: 1px dashed $primary-text-1;
   text-align: left;
   padding: 10px 5px;
   font-size: 14px;
@@ -28,4 +27,8 @@
   padding: 10px 5px;
   font-size: 15px;
   font-weight: 400;
+
+  &:focus-within {
+    background-color: $primary-color;
+  }
 }

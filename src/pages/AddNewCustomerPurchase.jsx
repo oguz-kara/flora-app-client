@@ -1,4 +1,4 @@
-import AddNewCustomerPurchaseForm from '../components/forms/AddNewCustomerPurchaseForm';
+import AddNewCustomerPurchaseForm from '../components/forms/CustomerPurchaseForm';
 
 export default function AddNewCustomerPurchase() {
   return (

@@ -2,21 +2,16 @@
 
 .dropdown-menu {
   position: relative;
-}
-
-.dropdown-header {
+  z-index: 100;
 }
 
 .dropdown-body {
   position: absolute;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media only screen and (max-width: 766px) {
   .dropdown-menu {
-    position: initial;
-  }
-  .dropdown-body {
-    left: 0;
   }
 }

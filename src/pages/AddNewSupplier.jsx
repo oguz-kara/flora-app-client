@@ -1,4 +1,4 @@
-import AddNewSupplierForm from '../components/forms/AddNewSupplierForm';
+import AddNewSupplierForm from '../components/forms/SupplierForm';
 
 export default function AddNewCustomer() {
   return (

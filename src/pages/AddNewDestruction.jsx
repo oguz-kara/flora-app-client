@@ -1,4 +1,4 @@
-import AddNewDestructionForm from '../components/forms/AddNewDestructionForm';
+import AddNewDestructionForm from '../components/forms/DestructionForm';
 
 export default function AddNewCustomer() {
   return (

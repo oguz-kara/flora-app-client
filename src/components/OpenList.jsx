@@ -1,24 +1,10 @@
 import '../style/open-list.scss';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faChevronDown,
-  faChevronUp,
-  faPlus,
-  faList,
-} from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 export default function OpenList({ header, children, isOpen = false }) {
   const [open, setOpen] = useState(isOpen);
-
-  const toggleOpen = () => {
-    setOpen((prev) => !prev);
-  };
-
-  const getBodyClassList = () => {
-    return open ? 'active' : 'passive';
-  };
 
   const getOpenListBodyClassList = (condition) => {
     return condition
@@ -37,9 +23,7 @@ export default function OpenList({ header, children, isOpen = false }) {
         <span>{header}</span>
         {getChevron(open)}
       </h6>
-      <div className={getOpenListBodyClassList(open)}>
-        {children}
-      </div>
+      <div className={getOpenListBodyClassList(open)}>{children}</div>
     </div>
   );
 }

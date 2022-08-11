@@ -2,14 +2,10 @@
 
 .account-menu__search {
   padding: 25px;
-  max-width: 90vw;
   width: 400px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: $primary-background;
-  box-shadow: -1px 0px 34px 0px $primary-background-dark;
-  -webkit-box-shadow: -1px 0px 34px 0px $primary-background-dark;
-  -moz-box-shadow: -1px 0px 34px 0px $primary-background-dark;
   cursor: default;
 }
 
@@ -21,9 +17,6 @@
 
 .account-menu__separator {
   border-bottom: 1px solid $border-color;
-}
-
-.account-menu__search-icon {
 }
 
 .account-menu__search-input {

@@ -3,7 +3,7 @@ import '../style/account-menu.scss';
 export default function AccountMenu() {
   return (
     <>
-      <div className="account-menu__search">
+      <div className="account-menu__search p-6">
         <div className="account-menu__search-body">
           <div className="account-menu__section-title">Recently Searched:</div>
           <ul className="account-menu__list">

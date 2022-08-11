@@ -21,7 +21,9 @@ export default function Sidebar({ open, onOverlayClick }) {
     <>
       {open && <div className="sidebar-overlay" onClick={onOverlayClick}></div>}
       <div className={getSidebarStyles()}>
-        <div className="sidebar__logo">KaraTicaret</div>
+        <div className="sidebar__logo">
+          KaraTicaret
+        </div>
         <div className="sidebar__body">
           <ul className="sidebar__list">
             <li className="sidebar__link-list-item sidebar__link-list-item--active">
@@ -59,6 +61,14 @@ export default function Sidebar({ open, onOverlayClick }) {
                       <FontAwesomeIcon icon={faPlus} />
                       <span className="sidebar__link-text">
                         Add new product
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li className="sidebar__link-list-item">
+                    <NavLink to="/update-product" onClick={onOverlayClick}>
+                      <FontAwesomeIcon icon={faPlus} />
+                      <span className="sidebar__link-text">
+                        Update product
                       </span>
                     </NavLink>
                   </li>

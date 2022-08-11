@@ -1,0 +1,18 @@
+@import '../variables.scss';
+
+.border-primary-bottom {
+  border-bottom: 1px solid $primary-color;
+}
+
+.border-primary-bottom-top {
+  border-bottom: 1px solid $primary-color;
+  border-top: 1px solid $primary-color;
+}
+
+.border-primary-right {
+  border-right: 1px solid $primary-color;
+}
+
+.br-5 {
+  border-radius: 5px;
+}

@@ -3,22 +3,22 @@ import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
 import Select from '../Select';
 
-export default function AddNewSupplierPaymentForm({
+export default function CustomerPaymentForm({
   onSubmit,
   title = '',
   ...props
 }) {
   return (
-    <div className="add-new-supplier-payment-form" {...props}>
+    <div className="add-new-customer-payment-form" {...props}>
       <h3 className="section-title">{title}</h3>
       <FormContainer onSubmit={onSubmit}>
         <InputContainer>
-          <Label>Company name (*):</Label>
+          <Label>Customer name (*):</Label>
           <Select
-            placeholder="Select a supplier name..."
+            placeholder="Select a customer name..."
             options={[
-              { value: '1', label: 'Arma' },
-              { value: '2', label: 'Omer Hirdavat' },
+              { value: '1', label: 'Meral aba' },
+              { value: '2', label: 'Ilker abi' },
             ]}
           ></Select>
         </InputContainer>

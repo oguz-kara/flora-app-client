@@ -6,13 +6,14 @@ import React, {
   forwardRef,
   useCallback,
 } from 'react';
+import mergeClasses from '../utils/mergeClasses';
 
 export const DropDownHeader = forwardRef(
-  ({ children, activateMenu, ...rest }, ref) => {
+  ({ children, activateMenu, className, ...rest }, ref) => {
     return (
       <span
         ref={ref}
-        className="dropdown-header"
+        className={mergeClasses(['dropdown-header', className])}
         {...rest}
         onClick={activateMenu}
       >
@@ -23,9 +24,13 @@ export const DropDownHeader = forwardRef(
 );
 
 export const DropDownBody = forwardRef(
-  ({ children, open = false, top, ...rest }, ref) =>
+  ({ children, open = false, className, ...rest }, ref) =>
     open && (
-      <div className="dropdown-body" {...rest} ref={ref} style={{ top }}>
+      <div
+        className={mergeClasses(['dropdown-body', className])}
+        {...rest}
+        ref={ref}
+      >
         {children}
       </div>
     )
@@ -34,7 +39,7 @@ export const DropDownBody = forwardRef(
 export default function DropDownMenu({
   children,
   active = false,
-  top = 0,
+  className,
   ...rest
 }) {
   const [menuActive, setMenuActive] = useState(active);
@@ -68,7 +73,7 @@ export default function DropDownMenu({
   return (
     <div
       ref={dropdown}
-      className="dropdown-menu"
+      className={mergeClasses(['dropdown-menu', className])}
       onClick={(e) => activeMenu()}
       {...rest}
     >
@@ -84,7 +89,6 @@ export default function DropDownMenu({
           return React.cloneElement(child, {
             open: menuActive,
             ref: menu,
-            top,
           });
         }
       })}

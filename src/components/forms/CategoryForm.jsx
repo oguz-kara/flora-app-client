@@ -3,26 +3,18 @@ import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
 import TextArea from '../TextArea';
 
-export default function AddNewCustomerForm({ onSubmit, title = '', ...props }) {
+export default function CategoryForm({ onSubmit, title = '', ...props }) {
   return (
-    <div style={{ width: '100%' }} {...props}>
+    <div className="add-category-form" {...props}>
       <h3 className="section-title">{title}</h3>
       <FormContainer onSubmit={onSubmit}>
         <InputContainer>
           <Label>Name (*):</Label>
-          <TextBox fullWidth placeholder="Add customer name..." />
+          <TextBox fullWidth placeholder="Add category name..." />
         </InputContainer>
         <InputContainer>
-          <Label>Phone number (*):</Label>
-          <TextBox fullWidth placeholder="Add customer phone number..." />
-        </InputContainer>
-        <InputContainer>
-          <Label>Total credit (*):</Label>
-          <TextBox
-            type="number"
-            fullWidth
-            placeholder="Add customer total credit / total depth to the store..."
-          />
+          <Label>Description (*):</Label>
+          <TextArea fullWidth placeholder="Add category description..." />
         </InputContainer>
         <InputContainer>
           <button className="submit-form-button" type="submit">

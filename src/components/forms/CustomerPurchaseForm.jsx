@@ -5,10 +5,10 @@ import Select from '../Select';
 import ReactTooltip from 'react-tooltip';
 import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
-import AddNewCustomerForm from './AddNewCustomerForm';
+import AddNewCustomerForm from './CustomerForm';
 import TextArea from '../TextArea';
 
-export default function AddNewCustomerPurchaseForm() {
+export default function CustomerPurchaseForm() {
   const [activeAddCustomerForm, setActiveAddCustomerForm] = useState(false);
 
   const handleNewCustomerFormSubmit = () => {

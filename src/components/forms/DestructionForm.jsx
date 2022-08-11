@@ -1,23 +1,11 @@
-import Modal from '../Modal';
 import Label from '../Label';
 import { FormContainer, InputContainer } from '../Container';
-import Select from '../Select';
-import ReactTooltip from 'react-tooltip';
 import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
-import AddNewSupplierForm from './AddNewSupplierForm';
-import TextArea from '../TextArea';
 
-export default function AddNewSupplierPurchaseForm() {
+export default function DestructionForm() {
   const [activeAddSupplierForm, setActiveAddSupplierForm] = useState(false);
 
-  const handleNewSupplierFormSubmit = () => {
-    setActiveAddSupplierForm(false);
-  };
-
-  const handleAddNewSupplierClick = () => {
-    setActiveAddSupplierForm(true);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -45,18 +45,6 @@
   margin-bottom: 25px;
 }
 
-.flex-box {
-  display: flex;
-}
-
-.flex1 {
-  flex: 1;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
 .add-new-button {
   background-color: $primary-background-light;
   font-size: 20px;
@@ -91,60 +79,13 @@
   font-weight: bold;
 }
 
-.primary-text {
-  color: $primary-text !important;
+.section {
+  border-radius: 5px;
+  margin: 35px 0;
 }
 
-.secondary-text {
-  color: $secondary-text !important;
-}
-
-.primary-color {
-  color: $primary-color;
-}
-
-.secondary-color {
-  color: $secondary-color;
-}
-
-.primary-color-background {
-  background-color: $primary-color !important;
-}
-
-.primary-dark-color-background {
-  background-color: $primary-dark-color !important;
-}
-
-.secondary-color-background {
-  background-color: $secondary-color !important;
-}
-
-.secondary-dark-color-background {
-  background-color: $secondary-dark-color !important;
-}
-
-.secondary-light-color-background {
-  background-color: $secondary-color !important;
-}
-
-.transparent-background {
-  background-color: transparent !important;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.p20 {
-  padding: 20px !important;
-}
-
-.mb15 {
-  margin-bottom: 15px !important;
-}
-
-.mr15 {
-  margin-right: 15px !important;
+.cursor-pointer {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 766px) {

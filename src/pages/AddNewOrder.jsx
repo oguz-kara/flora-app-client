@@ -1,4 +1,4 @@
-import AddNewOrderForm from '../components/forms/AddNewOrderForm';
+import AddNewOrderForm from '../components/forms/OrderForm';
 
 export default function AddNewOrder() {
   return (

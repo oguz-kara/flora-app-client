@@ -1,4 +1,4 @@
-import AddNewSupplierPaymentForm from '../components/forms/AddNewSupplierPaymentForm';
+import AddNewSupplierPaymentForm from '../components/forms/SupplierPaymentForm';
 
 export default function AddNewCustomerPayment() {
   return (

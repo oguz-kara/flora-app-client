@@ -1,4 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import './variables.scss';
+@import './utils/_utils-dir.scss';
 
 :root {
   --toastify-color-light: #3c3e49 !important;
@@ -20,6 +25,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  content: [];
 }
 
 * {

@@ -1,3 +1,4 @@
+import mergeClasses from '../utils/mergeClasses';
 import '../style/card.scss';
 
 export function CardHeader({ children, ...props }) {
@@ -17,11 +18,8 @@ export function CardBody({ children, ...props }) {
 }
 
 export default function Card({ children, className, ...rest }) {
-  const mergeClasses = (classNames) => {
-    return 'super-card ' + classNames;
-  };
   return (
-    <div className={mergeClasses(className)} {...rest}>
+    <div className={mergeClasses(['super-card', className])} {...rest}>
       {children}
     </div>
   );

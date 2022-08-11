@@ -7,13 +7,14 @@ import ReactTooltip from 'react-tooltip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons';
 import FileInputPreview from '../FileInputPreview';
-import AddCategoryForm from './AddNewCategoryForm';
-import AddSupplierForm from './AddNewSupplierForm';
-import AddBrandForm from './AddNewBrandForm';
+import AddCategoryForm from './CategoryForm';
+import AddSupplierForm from './SupplierForm';
+import AddBrandForm from './BrandForm';
 import Modal from '../Modal';
 import { useState } from 'react';
+import mergeClasses from '../../utils/mergeClasses';
 
-export default function AddProductForm() {
+export default function ProductForm({ className, style }) {
   const [activeAddCategoryForm, setActiveAddCategoryForm] = useState(false);
   const [activeAddBrandForm, setActiveAddBrandForm] = useState(false);
   const [activeAddSupplierForm, setActiveAddSupplierForm] = useState(false);
@@ -49,7 +50,10 @@ export default function AddProductForm() {
   };
 
   return (
-    <div className="add-product-form">
+    <div
+      style={style}
+      className={mergeClasses(['add-product-form', className])}
+    >
       <Modal
         active={activeAddCategoryForm}
         setActive={setActiveAddCategoryForm}
@@ -91,7 +95,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Category name (*):</Label>
-          <div className="flex-box">
+          <div className="flex">
             <Select
               placeholder="Select a product category. If category not exists you can create it by pressing '+' button."
               options={[
@@ -111,7 +115,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Supplier name (*):</Label>
-          <div className="flex-box">
+          <div className="flex">
             <Select
               placeholder="Select a product supplier. If supplier not exists you can create it by pressing '+' button."
               options={[
@@ -131,7 +135,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Brand name (*):</Label>
-          <div className="flex-box">
+          <div className="flex">
             <Select
               placeholder="Select a product brand. If brand not exists you can create it by pressing '+' button."
               options={[
@@ -160,7 +164,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Main unit name (*):</Label>
-          <div className="flex-box">
+          <div className="flex">
             <Select
               placeholder="Select a main unit. If main unit not exists you can create it by pressing '+' button."
               options={[
@@ -186,7 +190,7 @@ export default function AddProductForm() {
         </InputContainer>
         <InputContainer>
           <Label>Add sub units (?):</Label>
-          <div className="flex-box">
+          <div className="flex">
             <Select
               placeholder="Select a sub units. If sub units not exists you can create it by pressing '+' button."
               isMulti

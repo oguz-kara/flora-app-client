@@ -1,9 +1,12 @@
 import '../style/modal.scss';
 import { useState, useEffect } from 'react';
+import mergeClasses from '../utils/mergeClasses';
 
-export default function Modal({ active, setActive, ...props }) {
+export default function Modal({ active, setActive, className, ...props }) {
   const getClassList = () => {
-    return active ? 'modal' : 'modal modal--passive';
+    return active
+      ? mergeClasses(['modal', className])
+      : mergeClasses(['modal modal--passive', className]);
   };
 
   useEffect(() => {
