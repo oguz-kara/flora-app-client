@@ -33,3 +33,14 @@ export function InputContainer({ center = false, ...props }) {
     </div>
   );
 }
+
+export function SubContainer({ center = false, ...props }) {
+  const getClassList = () => {
+    return 'sub-container'
+  };
+  return (
+    <div className={getClassList()} {...props}>
+      {props.children}
+    </div>
+  );
+}

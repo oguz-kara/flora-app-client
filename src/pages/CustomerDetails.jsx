@@ -1,3 +1,4 @@
+import CustomerPaymentForm from '../components/forms/CustomerPaymentForm';
 import Modal from '../components/Modal';
 import CustomerForm from '../components/forms/CustomerForm';
 import Typography from '../components/Typography';
@@ -7,11 +8,13 @@ import Box from '../components/Box';
 import Flex from '../components/Flex';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import DropDownActions from '../components/DropDownActions';
 
 export default function CustomerDetails(props) {
   const [activeUpdateCustomerForm, setActiveUpdateCustomerForm] =
+    useState(false);
+  const [activeUpdateCustomerPaymentForm, setActiveUpdateCustomerPaymentForm] =
     useState(false);
 
   const handleUpdateCustomerClick = (e) => {
@@ -23,6 +26,17 @@ export default function CustomerDetails(props) {
     e.preventDefault();
     setActiveUpdateCustomerForm(false);
   };
+
+  const handleUpdateCustomerPaymentClick = (e) => {
+    e.preventDefault();
+    setActiveUpdateCustomerPaymentForm(true);
+  };
+
+  const handleCustomerPaymentFormSubmit = (e) => {
+    e.preventDefault();
+    setActiveUpdateCustomerPaymentForm(false);
+  };
+
   return (
     <Container>
       <Modal
@@ -33,6 +47,17 @@ export default function CustomerDetails(props) {
           style={{ padding: 20 }}
           onSubmit={(e) => handleCustomerFormSubmit(e)}
           title="-> Update customer form"
+          className="card"
+        />
+      </Modal>
+      <Modal
+        active={activeUpdateCustomerPaymentForm}
+        setActive={setActiveUpdateCustomerPaymentForm}
+      >
+        <CustomerPaymentForm
+          style={{ padding: 20 }}
+          onSubmit={(e) => handleCustomerPaymentFormSubmit(e)}
+          title="-> Update customer payment form"
           className="card"
         />
       </Modal>
@@ -60,28 +85,26 @@ export default function CustomerDetails(props) {
             </Box>
             <Table>
               <TBody>
-                <Tr className="customer-details__content__header">
-                  <Td className="customer-details__content__header bold">
-                    name
-                  </Td>
+                <Tr>
+                  <Td>name</Td>
                   <Td>
                     <Typography variant="h6">Ulas</Typography>
                   </Td>
                 </Tr>
                 <Tr>
-                  <Td className="customer-details__content__header bold">
+                  <Td>
                     credit
                   </Td>
                   <Td>₺1456</Td>
                 </Tr>
                 <Tr>
-                  <Td className="customer-details__content__header bold">
+                  <Td className="bold">
                     phone number
                   </Td>
                   <Td>123 232 21 23</Td>
                 </Tr>
                 <Tr>
-                  <Td className="customer-details__content__header bold">
+                  <Td className="bold">
                     created at
                   </Td>
                   <Td>17 July 2020</Td>
@@ -99,11 +122,19 @@ export default function CustomerDetails(props) {
             </Typography>
             <Table className="relative pt-20 pb-20 br-5">
               <Typography
-                className="absolute top-5 right-5 success-color bold underline"
+                className="absolute top-5 left-5 success-color bold underline"
                 variant="small"
               >
                 9 April 2022, 14:33 pm
               </Typography>
+              <DropDownActions
+                className="absolute top-5 right-5 primary-color bold"
+                header={<FontAwesomeIcon icon={faChevronDown} size="sm" />}
+                data={[
+                  { name: 'update', action: () => {} },
+                  { name: 'delete', action: () => {} },
+                ]}
+              />
               <THead>
                 <Tr>
                   <Th className="primary-color">#name</Th>
@@ -132,11 +163,19 @@ export default function CustomerDetails(props) {
             </Table>
             <Table className="relative pt-20 pb-20">
               <Typography
-                className="absolute top-5 right-5 success-color bold underline"
+                className="absolute top-5 left-5 success-color bold underline"
                 variant="small"
               >
                 24 March 2022, 13:35 pm
               </Typography>
+              <DropDownActions
+                className="absolute top-5 right-5 primary-color bold"
+                header={<FontAwesomeIcon icon={faChevronDown} size="sm" />}
+                data={[
+                  { name: 'update', action: () => {} },
+                  { name: 'delete', action: () => {} },
+                ]}
+              />
               <THead>
                 <Tr>
                   <Th className="primary-color">#name</Th>
@@ -165,11 +204,19 @@ export default function CustomerDetails(props) {
             </Table>
             <Table className="relative pt-20 pb-20">
               <Typography
-                className="absolute top-5 right-5 success-color bold underline"
+                className="absolute top-5 left-5 success-color bold underline"
                 variant="small"
               >
                 17 January 2022, 12:24 pm
               </Typography>
+              <DropDownActions
+                className="absolute top-5 right-5 primary-color bold"
+                header={<FontAwesomeIcon icon={faChevronDown} size="sm" />}
+                data={[
+                  { name: 'update', action: () => {} },
+                  { name: 'delete', action: () => {} },
+                ]}
+              />
               <THead>
                 <Tr>
                   <Th className="primary-color">#name</Th>
@@ -221,14 +268,20 @@ export default function CustomerDetails(props) {
                   <Td>17 Jan 2022, 12:49 pm</Td>
                   <Td>₺200</Td>
                   <Td>
-                    <Flex className="align-center">
+                    <Box>
                       <DropDownActions
+                        header={
+                          <FontAwesomeIcon icon={faChevronDown} size="sm" />
+                        }
                         data={[
-                          { name: 'update', action: handleUpdateCustomerClick },
+                          {
+                            name: 'update',
+                            action: handleUpdateCustomerPaymentClick,
+                          },
                           { name: 'delete', action: () => {} },
                         ]}
                       />
-                    </Flex>
+                    </Box>
                   </Td>
                 </Tr>
                 <Tr>
@@ -237,8 +290,14 @@ export default function CustomerDetails(props) {
                   <Td>
                     <Flex className="align-center">
                       <DropDownActions
+                        header={
+                          <FontAwesomeIcon icon={faChevronDown} size="sm" />
+                        }
                         data={[
-                          { name: 'update', action: handleUpdateCustomerClick },
+                          {
+                            name: 'update',
+                            action: handleUpdateCustomerPaymentClick,
+                          },
                           { name: 'delete', action: () => {} },
                         ]}
                       />
@@ -251,8 +310,14 @@ export default function CustomerDetails(props) {
                   <Td>
                     <Flex className="align-center">
                       <DropDownActions
+                        header={
+                          <FontAwesomeIcon icon={faChevronDown} size="sm" />
+                        }
                         data={[
-                          { name: 'update', action: handleUpdateCustomerClick },
+                          {
+                            name: 'update',
+                            action: handleUpdateCustomerPaymentClick,
+                          },
                           { name: 'delete', action: () => {} },
                         ]}
                       />

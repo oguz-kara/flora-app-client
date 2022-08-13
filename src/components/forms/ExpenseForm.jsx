@@ -24,7 +24,7 @@ export default function ExpenseForm({ onSubmit, title = '', ...props }) {
           />
         </InputContainer>
         <InputContainer>
-          <Label>Name (*):</Label>
+          <Label>Description (*):</Label>
           <TextArea
             fullWidth
             placeholder="Add expense description like interest or send money to children..."

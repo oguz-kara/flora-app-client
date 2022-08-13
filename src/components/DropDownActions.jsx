@@ -17,13 +17,11 @@ function Action({ name, children, className, ...props }) {
   );
 }
 
-export default function DropDownActions({ data, ...props }) {
+export default function DropDownActions({ data, header, className, ...props }) {
   return (
-    <Box className="dda-container">
+    <Box className={mergeClasses(['dda-container', className])} {...props}>
       <DropDownMenu>
-        <DropDownHeader style={{ zIndex: 99 }}>
-          <FontAwesomeIcon icon={faChevronDown} size="sm" />
-        </DropDownHeader>
+        <DropDownHeader style={{ zIndex: 99 }}>{header}</DropDownHeader>
         <DropDownBody className="background-dark">
           <Box>
             {data.map((item) => (

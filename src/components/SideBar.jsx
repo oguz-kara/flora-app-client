@@ -8,6 +8,9 @@ import {
   faList,
   faCashRegister,
   faMoneyBillWave,
+  faPen,
+  faArrowRotateBack,
+  faCartPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import OpenList from './OpenList';
 import NavLink from './NavLink';
@@ -21,15 +24,25 @@ export default function Sidebar({ open, onOverlayClick }) {
     <>
       {open && <div className="sidebar-overlay" onClick={onOverlayClick}></div>}
       <div className={getSidebarStyles()}>
-        <div className="sidebar__logo">
-          KaraTicaret
-        </div>
+        <div className="sidebar__logo">KaraTicaret</div>
         <div className="sidebar__body">
           <ul className="sidebar__list">
             <li className="sidebar__link-list-item sidebar__link-list-item--active">
               <NavLink to="/dashboard" onClick={onOverlayClick}>
                 <FontAwesomeIcon icon={faChartPie} />
                 <span className="sidebar__link-text">Dashboard</span>
+              </NavLink>
+            </li>
+            <li className="sidebar__link-list-item sidebar__link-list-item--active">
+              <NavLink
+                className="new-sale"
+                to="/new-sale"
+                onClick={onOverlayClick}
+              >
+                <FontAwesomeIcon icon={faCartPlus} />
+                <span className="sidebar__link-text">
+                  New sale
+                </span>
               </NavLink>
             </li>
             <li className="sidebar__list-item">
@@ -66,10 +79,8 @@ export default function Sidebar({ open, onOverlayClick }) {
                   </li>
                   <li className="sidebar__link-list-item">
                     <NavLink to="/update-product" onClick={onOverlayClick}>
-                      <FontAwesomeIcon icon={faPlus} />
-                      <span className="sidebar__link-text">
-                        Update product
-                      </span>
+                      <FontAwesomeIcon icon={faPen} />
+                      <span className="sidebar__link-text">Update product</span>
                     </NavLink>
                   </li>
                   <li className="sidebar__link-list-item">
@@ -132,6 +143,12 @@ export default function Sidebar({ open, onOverlayClick }) {
                     >
                       <FontAwesomeIcon icon={faMoneyBillWave} />
                       <span className="sidebar__link-text">New purchase</span>
+                    </NavLink>
+                    <NavLink to="/customer-return" onClick={onOverlayClick}>
+                      <FontAwesomeIcon icon={faArrowRotateBack} />
+                      <span className="sidebar__link-text">
+                        Customer return
+                      </span>
                     </NavLink>
                   </li>
                 </ul>

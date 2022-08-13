@@ -2,18 +2,16 @@ import Label from '../Label';
 import { FormContainer, InputContainer } from '../Container';
 import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
+import Box from '../Box';
 
 export default function DestructionForm() {
-  const [activeAddSupplierForm, setActiveAddSupplierForm] = useState(false);
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   return (
     <>
-      <div className="add-new-destruction-form">
+      <Box className="background-dark p-30">
         <FormContainer onSubmit={handleSubmit}>
           <InputContainer>
             <Label>Destruction list (*):</Label>
@@ -39,7 +37,7 @@ export default function DestructionForm() {
             </button>
           </InputContainer>
         </FormContainer>
-      </div>
+      </Box>
     </>
   );
 }

@@ -11,6 +11,10 @@
   top: 0;
   left: 0;
   bottom: 0;
+
+  & .new-sale svg path {
+    color: $primary-light-color;
+  }
 }
 
 .sidebar__logo {

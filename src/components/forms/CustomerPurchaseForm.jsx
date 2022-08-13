@@ -7,6 +7,7 @@ import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
 import AddNewCustomerForm from './CustomerForm';
 import TextArea from '../TextArea';
+import Flex from '../Flex';
 
 export default function CustomerPurchaseForm() {
   const [activeAddCustomerForm, setActiveAddCustomerForm] = useState(false);
@@ -40,7 +41,7 @@ export default function CustomerPurchaseForm() {
         <FormContainer onSubmit={handleSubmit}>
           <InputContainer>
             <Label>Customer name (*):</Label>
-            <div className="flex-box">
+            <Flex>
               <Select
                 placeholder="Select a customer name..."
                 options={[
@@ -56,11 +57,14 @@ export default function CustomerPurchaseForm() {
                 +
               </button>
               <ReactTooltip effect="solid" />
-            </div>
+            </Flex>
           </InputContainer>
           <InputContainer>
-            <Label>Purchase description (*):</Label>
-            <TextArea fullWidth placeholder="Add description for purchase..." />
+            <Label>Description (*):</Label>
+            <TextArea
+              fullWidth
+              placeholder="Add description why is it happening ? "
+            />
           </InputContainer>
           <InputContainer>
             <Label>Product list (*):</Label>

@@ -24,6 +24,27 @@ export default function OrderForm() {
     e.preventDefault();
   };
 
+  const data = [
+    {
+      name: 'Hasan',
+      surname: 'Kara',
+      age: 24,
+      city: 'Izmir',
+    },
+    {
+      name: 'Hande',
+      surname: 'Kara',
+      age: 20,
+      city: 'Izmir',
+    },
+    {
+      name: 'Elvan',
+      surname: 'Kara',
+      age: 40,
+      city: 'Izmir',
+    },
+  ];
+
   return (
     <>
       <Modal
@@ -41,7 +62,7 @@ export default function OrderForm() {
         <FormContainer onSubmit={handleSubmit}>
           <InputContainer>
             <Label>Customer name (*):</Label>
-            <div className="flex-box">
+            <div className="flex">
               <Select
                 placeholder="Select a customer name..."
                 options={[
@@ -72,7 +93,7 @@ export default function OrderForm() {
               headers={[
                 { name: 'name', input: true },
                 { name: 'qty', input: true },
-                { name: 'description', input: false },
+                { name: 'description', input: true },
               ]}
               initialValues={{
                 id: Date.now(),

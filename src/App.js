@@ -12,13 +12,17 @@ import AddNewProduct from './pages/AddNewProduct';
 import UpdateProduct from './pages/UpdateProduct';
 import ProductList from './pages/ProductList';
 import SaleList from './pages/SaleList';
+import NewSaleList from './pages/NewSaleList';
 import ProductSaleList from './pages/ProductSaleList';
 import AddNewOrder from './pages/AddNewOrder';
 import OrderList from './pages/OrderList';
 import AddNewCustomer from './pages/AddNewCustomer';
 import CustomerList from './pages/CustomerList';
+import CustomerDetails from './pages/CustomerDetails';
+import UpdateCustomerPurchase from './pages/UpdateCustomerPurchase';
 import AddNewCustomerPayment from './pages/AddNewCustomerPayment';
 import AddNewCustomerPurchase from './pages/AddNewCustomerPurchase';
+import CustomerReturn from './pages/CustomerReturn';
 import AddNewSupplier from './pages/AddNewSupplier';
 import SupplierList from './pages/SupplierList';
 import AddSupplierPayment from './pages/AddNewSupplierPayment';
@@ -29,7 +33,6 @@ import AddNewDestruction from './pages/AddNewDestruction';
 import DestructionList from './pages/DestructionList';
 import ProductDetails from './pages/ProductDetails';
 import SupplierDetails from './pages/SupplierDetails';
-import CustomerDetails from './pages/CustomerDetails';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -55,11 +58,13 @@ function App() {
               <Route path="/update-product" element={<UpdateProduct />} />
               <Route path="/product-list" element={<ProductList />} />
               <Route path="/sales-list" element={<SaleList />} />
+              <Route path="/new-sale" element={<NewSaleList />} />
               <Route path="/product-sales" element={<ProductSaleList />} />
               <Route path="/add-new-order" element={<AddNewOrder />} />
               <Route path="/order-list" element={<OrderList />} />
               <Route path="/add-new-customer" element={<AddNewCustomer />} />
               <Route path="/customer-list" element={<CustomerList />} />
+              <Route path="/customer-details" element={<CustomerDetails />} />
               <Route
                 path="/customer-new-payment"
                 element={<AddNewCustomerPayment />}
@@ -68,6 +73,11 @@ function App() {
                 path="/customer-new-purchase"
                 element={<AddNewCustomerPurchase />}
               />
+              <Route
+                path="/update-customer-purchase"
+                element={<UpdateCustomerPurchase />}
+              />
+              <Route path="/customer-return" element={<CustomerReturn />} />
               <Route path="/add-new-supplier" element={<AddNewSupplier />} />
               <Route path="/supplier-list" element={<SupplierList />} />
               <Route
@@ -87,7 +97,6 @@ function App() {
               <Route path="/destruction-list" element={<DestructionList />} />
               <Route path="/product-details" element={<ProductDetails />} />
               <Route path="/supplier-details" element={<SupplierDetails />} />
-              <Route path="/customer-details" element={<CustomerDetails />} />
             </Routes>
           </div>
         </div>
