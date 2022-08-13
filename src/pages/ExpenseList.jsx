@@ -1,3 +1,5 @@
+import DatePicker from '../components/DatePicker';
+import Flex from '../components/Flex';
 import Table, { THead, Tr, Th, TBody, Td } from '../components/Table';
 import ExpenseForm from '../components/forms/ExpenseForm';
 import Box from '../components/Box';
@@ -6,9 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import Modal from '../components/Modal';
+import Typography from '../components/Typography';
+import Label from '../components/Label';
+import Button from '../components/Button';
 
 export default function ProductSaleList() {
   const [activeUpdateExpenseForm, setActiveUpdateExpenseForm] = useState(false);
+  const [date, setDate] = useState(new Date());
 
   const handleUpdateExpenseClick = (e) => {
     e.preventDefault();
@@ -21,7 +27,7 @@ export default function ProductSaleList() {
   };
 
   return (
-    <div className="expense-list">
+    <Box className="min-h-screen">
       <Modal
         active={activeUpdateExpenseForm}
         setActive={setActiveUpdateExpenseForm}
@@ -36,6 +42,22 @@ export default function ProductSaleList() {
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Sales {'>'} Product sales
       </h4>
+      <Box className="border-b-2 border-solid border-primary-color-muted mb-10">
+        <Typography variant="h6">Filters</Typography>
+        <Flex className="items-center justify-between">
+          <Flex className="items-center">
+            <Label>by date</Label>
+            <DatePicker
+              className="inline-block"
+              selected={date}
+              onChange={(date) => setDate(date)}
+            />
+          </Flex>
+          <Box>
+            <Button className="bg-primary-color">apply</Button>
+          </Box>
+        </Flex>
+      </Box>
       <Table>
         <THead>
           <Tr>
@@ -71,6 +93,6 @@ export default function ProductSaleList() {
           </Tr>
         </TBody>
       </Table>
-    </div>
+    </Box>
   );
 }

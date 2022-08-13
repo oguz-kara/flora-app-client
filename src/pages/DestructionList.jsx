@@ -21,7 +21,7 @@ export default function DestructionList({ props }) {
     setActiveUpdateDestructionForm(false);
   };
   return (
-    <div className="destruction-list">
+    <Box className="min-h-screen">
       <Modal
         active={activeUpdateDestructionForm}
         setActive={setActiveUpdateDestructionForm}
@@ -128,6 +128,6 @@ export default function DestructionList({ props }) {
           </Table>
         </li>
       </ul>
-    </div>
+    </Box>
   );
 }

@@ -1,3 +1,5 @@
+import Box from "../components/Box";
+
 export default function Dashboard() {
-  return <h1>Dashboard</h1>;
+  return <Box className="min-h-screen">Dashboard</Box>;
 }

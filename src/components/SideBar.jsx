@@ -17,7 +17,7 @@ import NavLink from './NavLink';
 
 export default function Sidebar({ open, onOverlayClick }) {
   const getSidebarStyles = () => {
-    return open ? 'sidebar sidebar__active' : 'sidebar sidebar__passive';
+    return open ? 'sidebar  sidebar__active' : 'sidebar sidebar__passive';
   };
 
   return (

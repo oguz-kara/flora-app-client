@@ -38,7 +38,7 @@ export default function CustomerDetails(props) {
   };
 
   return (
-    <Container>
+    <Box className="min-h-screen">
       <Modal
         active={activeUpdateCustomerForm}
         setActive={setActiveUpdateCustomerForm}
@@ -329,6 +329,6 @@ export default function CustomerDetails(props) {
           </Box>
         </Flex>
       </Box>
-    </Container>
+    </Box>
   );
 }

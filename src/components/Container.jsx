@@ -1,4 +1,5 @@
 import '../style/container.scss';
+import mergeClasses from '../utils/mergeClasses';
 
 export default function Container({ center = false, ...props }) {
   const getClassList = () => {
@@ -23,12 +24,9 @@ export function FormContainer({ center = false, ...props }) {
   );
 }
 
-export function InputContainer({ center = false, ...props }) {
-  const getClassList = () => {
-    return 'input-group'
-  };
+export function InputContainer({ center = false, className, ...props }) {
   return (
-    <div className={getClassList()} {...props}>
+    <div className={mergeClasses(['input-group', className])} {...props}>
       {props.children}
     </div>
   );
@@ -36,7 +34,7 @@ export function InputContainer({ center = false, ...props }) {
 
 export function SubContainer({ center = false, ...props }) {
   const getClassList = () => {
-    return 'sub-container'
+    return 'sub-container';
   };
   return (
     <div className={getClassList()} {...props}>

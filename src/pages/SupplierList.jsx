@@ -1,15 +1,30 @@
+import Typography from '../components/Typography';
+import Flex from '../components/Flex';
+import Checkbox from '../components/Checkbox';
+import Button from '../components/Button';
+
 import { FormContainer, InputContainer } from '../components/Container';
 import Label from '../components/Label';
 import Table, { TBody, Td, Th, THead, Tr } from '../components/Table';
 import TextBox from '../components/TextBox';
 import { Link } from 'react-router-dom';
+import Box from '../components/Box';
 
 export default function SupplierList() {
   return (
-    <div>
+    <Box className="min-h-screen">
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Products {'>'} Product list
       </h4>
+      <Box className="border-b-2 border-solid border-primary-color-muted mb-10">
+        <Typography variant="h6">Filters</Typography>
+        <Flex className="items-center justify-between">
+          <Checkbox>has credit ? </Checkbox>
+          <Box>
+            <Button className="bg-primary-color">apply</Button>
+          </Box>
+        </Flex>
+      </Box>
       <FormContainer>
         <InputContainer>
           <Label>Search (?):</Label>
@@ -60,6 +75,6 @@ export default function SupplierList() {
           </TBody>
         </Table>
       </FormContainer>
-    </div>
+    </Box>
   );
 }

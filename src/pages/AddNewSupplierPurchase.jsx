@@ -1,12 +1,13 @@
+import Box from '../components/Box';
 import AddNewSupplierPurchaseForm from '../components/forms/SupplierPurchaseForm';
 
 export default function AddNewCustomerPurchase() {
   return (
-    <div className="add-new-supplier-purchase">
+    <Box className="min-h-screen">
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Supplier {'>'} Add new supplier purchase
       </h4>
       <AddNewSupplierPurchaseForm />
-    </div>
+    </Box>
   );
 }

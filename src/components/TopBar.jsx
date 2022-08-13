@@ -1,14 +1,12 @@
+import Typography from './Typography';
 import DropDownMenu, { DropDownHeader, DropDownBody } from './DropDownMenu';
 import '../style/top-bar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronCircleDown,
-  faSearch,
   faBars,
-  faUser,
   faCircleUser,
 } from '@fortawesome/free-solid-svg-icons';
-import SearchMenu from './SearchMenu';
 import AccountMenu from './AccountMenu';
 
 export default function TopBar({ onMenuClick }) {
@@ -31,7 +29,7 @@ export default function TopBar({ onMenuClick }) {
                 />
               </div>
               <div className="actions__content">
-                <h4 className="actions__title">Hasan Kara</h4>
+                <Typography variant="h4" className="actions__title">Hasan Kara</Typography>
                 <div className="actions__subtitle">Founder</div>
               </div>
               <div className="actions__drop-down">

@@ -1,32 +1,32 @@
 import { useState } from 'react';
 import Modal from '../Modal';
-import SalesListFinalForm from './SaleListFinalForm';
+import ReturnListFinalForm from './ReturnListFinalForm';
 import { FormContainer, InputContainer } from '../Container';
 import TableWithInputs from '../TableWithInputs';
 import Label from '../Label';
 import Button from '../Button';
 
-export default function SaleListForm({ children, ...props }) {
-  const [activeSalesListForm, setActiveSalesListForm] = useState(false);
+export default function ReturnListForm({ children, ...props }) {
+  const [activeReturnListFinalForm, setActiveReturnListFinalForm] = useState(false);
 
-  const handleSalesListClick = (e) => {
+  const handleReturnListFinalClick = (e) => {
     e.preventDefault();
-    setActiveSalesListForm(true);
+    setActiveReturnListFinalForm(true);
   };
 
-  const handleSalesListFormSubmit = (e) => {
+  const handleReturnListFinalFormSubmit = (e) => {
     e.preventDefault();
-    setActiveSalesListForm(false);
+    setActiveReturnListFinalForm(false);
   };
   return (
     <FormContainer {...props}>
       <Modal
-        active={activeSalesListForm}
-        setActive={setActiveSalesListForm}
+        active={activeReturnListFinalForm}
+        setActive={setActiveReturnListFinalForm}
       >
-        <SalesListFinalForm
+        <ReturnListFinalForm
           style={{ padding: 20 }}
-          onSubmit={(e) => handleSalesListFormSubmit(e)}
+          onSubmit={(e) => handleReturnListFinalFormSubmit(e)}
           title="-> Update supplier form"
           className="card"
         />
@@ -53,7 +53,7 @@ export default function SaleListForm({ children, ...props }) {
       </InputContainer>
       <InputContainer>
         <Button
-          onClick={handleSalesListClick}
+          onClick={handleReturnListFinalClick}
           className="bg-primary-color"
           type="submit"
         >

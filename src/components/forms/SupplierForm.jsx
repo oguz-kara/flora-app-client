@@ -1,6 +1,7 @@
 import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
+import Button from '../Button';
 
 export default function SupplierForm({ onSubmit, title = '', ...props }) {
   return (
@@ -27,9 +28,9 @@ export default function SupplierForm({ onSubmit, title = '', ...props }) {
           <TextBox fullWidth placeholder="Add phone number of supplier..." />
         </InputContainer>
         <InputContainer>
-          <button className="submit-form-button" type="submit">
+          <Button className="bg-primary-color" type="submit">
             SUBMIT
-          </button>
+          </Button>
         </InputContainer>
       </FormContainer>
     </div>

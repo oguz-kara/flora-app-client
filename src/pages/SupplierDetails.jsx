@@ -38,7 +38,7 @@ export default function SupplierDetails(props) {
     setActiveUpdateSupplierPaymentForm(false);
   };
   return (
-    <Container>
+    <Box className="min-h-screen">
       <Modal
         active={activeUpdateSupplierForm}
         setActive={setActiveUpdateSupplierForm}
@@ -331,6 +331,6 @@ export default function SupplierDetails(props) {
           </Box>
         </Flex>
       </Box>
-    </Container>
+    </Box>
   );
 }

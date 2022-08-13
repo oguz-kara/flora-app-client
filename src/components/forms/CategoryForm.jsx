@@ -1,3 +1,4 @@
+import Button from '../Button';
 import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
@@ -17,9 +18,9 @@ export default function CategoryForm({ onSubmit, title = '', ...props }) {
           <TextArea fullWidth placeholder="Add category description..." />
         </InputContainer>
         <InputContainer>
-          <button className="submit-form-button" type="submit">
+          <Button className="bg-primary-color" type="submit">
             SUBMIT
-          </button>
+          </Button>
         </InputContainer>
       </FormContainer>
     </div>

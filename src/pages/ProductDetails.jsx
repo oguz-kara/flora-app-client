@@ -11,6 +11,7 @@ import Card, { CardBody, CardHeader } from '../components/Card';
 import Table, { TBody, Td, Th, THead, Tr } from '../components/Table';
 import '../style/product-details.scss';
 import Container from '../components/Container';
+import Box from '../components/Box';
 
 export default function ProductDetails(props) {
   const data = [
@@ -27,7 +28,7 @@ export default function ProductDetails(props) {
     { name: '23 Nisan 2021 >', pv: 946, amt: 8070 },
   ];
   return (
-    <Container>
+    <Box className="min-h-screen">
       <Typography
         variant="subtitle1"
         style={{ marginBottom: 30, color: 'white' }}
@@ -245,6 +246,6 @@ export default function ProductDetails(props) {
           </Card>
         </div>
       </div>
-    </Container>
+    </Box>
   );
 }

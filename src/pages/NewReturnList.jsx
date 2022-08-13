@@ -1,10 +1,10 @@
 import Box from '../components/Box';
-import SaleListForm from '../components/forms/SaleListForm';
+import ReturnListForm from '../components/forms/ReturnListForm';
 
 export default function NewSaleList() {
   return (
     <Box className="min-h-screen">
-      <SaleListForm />
+      <ReturnListForm />
     </Box>
   );
 }

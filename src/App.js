@@ -33,9 +33,12 @@ import AddNewDestruction from './pages/AddNewDestruction';
 import DestructionList from './pages/DestructionList';
 import ProductDetails from './pages/ProductDetails';
 import SupplierDetails from './pages/SupplierDetails';
+import NewReturnList from './pages/NewReturnList';
+import Box from './components/Box';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [test, setTest] = useState(false);
 
   const openSidebar = () => {
     setSidebarOpen(true);
@@ -46,12 +49,12 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Box className="App">
       <Layout>
         <SideBar open={sidebarOpen} onOverlayClick={closeSidebar} />
-        <div className="right-side">
+        <Box className="right-side">
           <TopBar onMenuClick={openSidebar} />
-          <div className="main">
+          <Box className="main">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/add-new-product" element={<AddNewProduct />} />
@@ -97,9 +100,10 @@ function App() {
               <Route path="/destruction-list" element={<DestructionList />} />
               <Route path="/product-details" element={<ProductDetails />} />
               <Route path="/supplier-details" element={<SupplierDetails />} />
+              <Route path="/return-list" element={<NewReturnList />} />
             </Routes>
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Layout>
       <ToastContainer
         position="bottom-left"
@@ -112,7 +116,7 @@ function App() {
         draggable
         pauseOnHover
       />
-    </div>
+    </Box>
   );
 }
 

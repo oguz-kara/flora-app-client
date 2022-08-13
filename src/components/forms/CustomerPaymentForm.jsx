@@ -2,6 +2,7 @@ import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
 import Select from '../Select';
+import Button from '../Button';
 
 export default function CustomerPaymentForm({
   onSubmit,
@@ -27,9 +28,9 @@ export default function CustomerPaymentForm({
           <TextBox fullWidth placeholder="Enter payment amount..." />
         </InputContainer>
         <InputContainer>
-          <button className="submit-form-button" type="submit">
+          <Button className="bg-primary-color" type="submit">
             SUBMIT
-          </button>
+          </Button>
         </InputContainer>
       </FormContainer>
     </div>

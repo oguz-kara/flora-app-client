@@ -2,6 +2,7 @@ import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
 import TextArea from '../TextArea';
+import Button from '../Button';
 
 export default function CustomerForm({ onSubmit, title = '', ...props }) {
   return (
@@ -25,9 +26,9 @@ export default function CustomerForm({ onSubmit, title = '', ...props }) {
           />
         </InputContainer>
         <InputContainer>
-          <button className="submit-form-button" type="submit">
+          <Button className="bg-primary-color" type="submit">
             SUBMIT
-          </button>
+          </Button>
         </InputContainer>
       </FormContainer>
     </div>

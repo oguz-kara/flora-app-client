@@ -1,13 +1,36 @@
+import Flex from '../components/Flex';
+import Label from '../components/Label';
+import DatePicker from '../components/DatePicker';
+import Button from '../components/Button';
 import Typography from '../components/Typography';
 import Table, { TBody, Td, Th, THead, Tr } from '../components/Table';
 import '../style/sale-list.scss';
+import Box from '../components/Box';
+import { useState } from 'react';
 
 export default function SaleList({ props }) {
+  const [date, setDate] = useState(new Date());
   return (
-    <div className="sale-list">
-      <h4 style={{ marginBottom: 30, color: 'white' }}>
+    <Box className="min-h-screen">
+      <Typography variant="h4" style={{ marginBottom: 30, color: 'white' }}>
         Sales {'>'} Sales list
-      </h4>
+      </Typography>
+      <Box className="border-b-2 border-solid border-primary-color-muted mb-10">
+        <Typography variant="h6">Filters</Typography>
+        <Flex className="items-center justify-between">
+          <Flex className="items-center">
+            <Label>by date</Label>
+            <DatePicker
+              className="inline-block"
+              selected={date}
+              onChange={(date) => setDate(date)}
+            />
+          </Flex>
+          <Box>
+            <Button className="bg-primary-color">apply</Button>
+          </Box>
+        </Flex>
+      </Box>
       <ul className="sale-list__list">
         <li className="sale-list__list-item">
           <Table className="sale-list__list-item__left">
@@ -274,6 +297,6 @@ export default function SaleList({ props }) {
           </div>
         </li>
       </ul>
-    </div>
+    </Box>
   );
 }

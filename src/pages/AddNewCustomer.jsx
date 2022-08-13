@@ -1,12 +1,14 @@
+import Typography from '../components/Typography';
 import AddNewCustomerForm from '../components/forms/CustomerForm';
+import Box from '../components/Box';
 
 export default function AddNewCustomer() {
   return (
-    <div className="add-new-customer">
-      <h4 style={{ marginBottom: 30, color: 'white' }}>
+    <Box className="min-h-screen">
+      <Typography variant="h4" className="mb-5">
         Customers {'>'} Add new customer
-      </h4>
+      </Typography>
       <AddNewCustomerForm />
-    </div>
+    </Box>
   );
 }

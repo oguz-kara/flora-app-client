@@ -1,12 +1,34 @@
+import Checkbox from '../components/Checkbox';
+import { useState } from 'react';
+import Box from '../components/Box';
+import Button from '../components/Button';
+import DatePicker from '../components/DatePicker';
+import Flex from '../components/Flex';
+import Label from '../components/Label';
 import Table, { TBody, Td, Th, THead, Tr } from '../components/Table';
+import Typography from '../components/Typography';
 import '../style/order-list.scss';
 
 export default function OrderList({ props }) {
   return (
-    <div className="order-list">
+    <Box className="min-h-screen">
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Sales {'>'} Sales list
       </h4>
+      <Box className="border-b-2 border-solid border-primary-color-muted mb-10">
+        <Typography variant="h6">Filters</Typography>
+        <Flex className="items-center justify-between">
+          <Flex>
+            <Checkbox className="mr-2">Active</Checkbox>
+            <Checkbox>Passed</Checkbox>
+            <Checkbox>Successfull</Checkbox>
+            <Checkbox>Failed</Checkbox>
+          </Flex>
+          <Box>
+            <Button className="bg-primary-color">apply</Button>
+          </Box>
+        </Flex>
+      </Box>
       <ul className="order-list__list">
         <li className="order-list__list-item">
           <Table className="order-list__list-item__left">
@@ -64,6 +86,6 @@ export default function OrderList({ props }) {
           </div>
         </li>
       </ul>
-    </div>
+    </Box>
   );
 }

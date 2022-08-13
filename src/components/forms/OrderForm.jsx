@@ -6,17 +6,18 @@ import ReactTooltip from 'react-tooltip';
 import DatePicker from '../DatePicker';
 import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
-import AddNewCustomerForm from './CustomerForm';
+import AddNewOrderForm from './CustomerForm';
+import Button from '../Button';
 
 export default function OrderForm() {
   const [dateTobeDelivered, setDateTobeDelivered] = useState(new Date());
   const [activeAddCustomerForm, setActiveAddCustomerForm] = useState(false);
 
-  const handleNewCustomerFormSubmit = () => {
+  const handleNewOrderFormSubmit = () => {
     setActiveAddCustomerForm(false);
   };
 
-  const handleAddNewCustomerClick = () => {
+  const handleAddNewOrderClick = () => {
     setActiveAddCustomerForm(true);
   };
 
@@ -24,36 +25,15 @@ export default function OrderForm() {
     e.preventDefault();
   };
 
-  const data = [
-    {
-      name: 'Hasan',
-      surname: 'Kara',
-      age: 24,
-      city: 'Izmir',
-    },
-    {
-      name: 'Hande',
-      surname: 'Kara',
-      age: 20,
-      city: 'Izmir',
-    },
-    {
-      name: 'Elvan',
-      surname: 'Kara',
-      age: 40,
-      city: 'Izmir',
-    },
-  ];
-
   return (
     <>
       <Modal
         active={activeAddCustomerForm}
         setActive={setActiveAddCustomerForm}
       >
-        <AddNewCustomerForm
+        <AddNewOrderForm
           style={{ padding: 20 }}
-          onSubmit={(e) => handleNewCustomerFormSubmit(e)}
+          onSubmit={(e) => handleNewOrderFormSubmit(e)}
           title="-> New customer form"
           className="card"
         />
@@ -70,13 +50,14 @@ export default function OrderForm() {
                   { value: '2', label: 'Meral able' },
                 ]}
               ></Select>
-              <button
-                data-tip="Add new customer"
-                className="add-new-button"
-                onClick={handleAddNewCustomerClick}
+              <Button
+                className="bg-secondary-color rounded-r"
+                type="submit"
+                onClick={handleAddNewOrderClick}
+                pending
               >
                 +
-              </button>
+              </Button>
               <ReactTooltip effect="solid" />
             </div>
           </InputContainer>
@@ -104,9 +85,9 @@ export default function OrderForm() {
             />
           </InputContainer>
           <InputContainer>
-            <button className="submit-form-button" type="submit">
+            <Button className="bg-primary-color" type="submit" pending>
               SUBMIT
-            </button>
+            </Button>
           </InputContainer>
         </FormContainer>
       </div>

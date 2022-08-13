@@ -7,7 +7,7 @@ import Label from '../Label';
 import TextBox from '../TextBox';
 import Button from '../Button';
 
-export default function SaleListFinalForm() {
+export default function ReturnListFinalForm() {
   return (
     <Box className="background-dark p-20 br-5 maw-500">
       <Typography variant="h6">List</Typography>
@@ -29,7 +29,7 @@ export default function SaleListFinalForm() {
         <Label>Received money (*):</Label>
         <TextBox
           fullWidth
-          placeholder="Received money that customer gives you."
+          placeholder="Given money that you gave to customer."
         />
       </InputContainer>
       <SubContainer>

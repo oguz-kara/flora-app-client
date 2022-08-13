@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Box from '../components/Box';
 import { InputContainer } from '../components/Container';
 import ProductForm from '../components/forms/ProductForm';
 import Label from '../components/Label';
@@ -20,11 +21,11 @@ export default function AddNewProduct() {
     );
   }
   return (
-    <div style={{ position: 'relative' }}>
+    <Box className="min-h-screen relative">
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Products {'>'} Add new product
       </h4>
       <ProductForm />
-    </div>
+    </Box>
   );
 }

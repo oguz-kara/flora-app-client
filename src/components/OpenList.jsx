@@ -2,6 +2,7 @@ import '../style/open-list.scss';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import Typography from './Typography';
 
 export default function OpenList({ header, children, isOpen = false }) {
   const [open, setOpen] = useState(isOpen);
@@ -19,10 +20,10 @@ export default function OpenList({ header, children, isOpen = false }) {
 
   return (
     <div className="open-list">
-      <h6 onClick={(e) => setOpen(!open)} className="open-list__list-header">
+      <Typography variant="h6" onClick={(e) => setOpen(!open)} className="open-list__list-header">
         <span>{header}</span>
         {getChevron(open)}
-      </h6>
+      </Typography>
       <div className={getOpenListBodyClassList(open)}>{children}</div>
     </div>
   );

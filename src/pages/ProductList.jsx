@@ -14,6 +14,8 @@ import DropDownMenu, {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faClose } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import Button from '../components/Button';
+import Box from '../components/Box';
 
 export default function ProductList() {
   const [activeAddProductForm, setActiveAddProductForm] = useState(false);
@@ -29,7 +31,7 @@ export default function ProductList() {
   };
 
   return (
-    <div>
+    <Box className="min-h-screen">
       <Modal active={activeAddProductForm} setActive={setActiveAddProductForm}>
         <ProductForm
           onSubmit={(e) => handleProductFormSubmit(e)}
@@ -72,9 +74,9 @@ export default function ProductList() {
               <Td>100</Td>
               <Td>₺20</Td>
               <Td>
-                <button>
+                <Button>
                   <FontAwesomeIcon data-tip="delete product" icon={faClose} />
-                </button>
+                </Button>
                 <ReactTooltip effect="solid" />
               </Td>
             </Tr>
@@ -93,9 +95,9 @@ export default function ProductList() {
               <Td>5</Td>
               <Td>₺299</Td>
               <Td>
-                <button>
+                <Button>
                   <FontAwesomeIcon data-tip="delete product" icon={faClose} />
-                </button>
+                </Button>
                 <ReactTooltip effect="solid" />
               </Td>
             </Tr>
@@ -114,9 +116,9 @@ export default function ProductList() {
               <Td>10</Td>
               <Td>₺49</Td>
               <Td>
-                <button>
+                <Button>
                   <FontAwesomeIcon data-tip="delete product" icon={faClose} />
-                </button>
+                </Button>
                 <ReactTooltip effect="solid" />
               </Td>
             </Tr>
@@ -135,15 +137,15 @@ export default function ProductList() {
               <Td>100</Td>
               <Td>₺14</Td>
               <Td>
-                <button>
+                <Button>
                   <FontAwesomeIcon data-tip="delete product" icon={faClose} />
-                </button>
+                </Button>
                 <ReactTooltip effect="solid" />
               </Td>
             </Tr>
           </TBody>
         </Table>
       </FormContainer>
-    </div>
+    </Box>
   );
 }

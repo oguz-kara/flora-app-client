@@ -7,6 +7,7 @@ import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
 import AddNewSupplierForm from './SupplierForm';
 import TextArea from '../TextArea';
+import Button from '../Button';
 
 export default function SupplierPurchaseForm() {
   const [activeAddSupplierForm, setActiveAddSupplierForm] = useState(false);
@@ -48,13 +49,13 @@ export default function SupplierPurchaseForm() {
                   { value: '2', label: 'Meral able' },
                 ]}
               ></Select>
-              <button
-                data-tip="Add new supplier"
-                className="add-new-button"
+              <Button
+                className="bg-secondary-color rounded-r"
+                data-tip="add new supplier"
                 onClick={handleAddNewSupplierClick}
               >
                 +
-              </button>
+              </Button>
               <ReactTooltip effect="solid" />
             </div>
           </InputContainer>
@@ -82,9 +83,9 @@ export default function SupplierPurchaseForm() {
             />
           </InputContainer>
           <InputContainer>
-            <button className="submit-form-button" type="submit">
+            <Button className="bg-primary-color" type="submit">
               SUBMIT
-            </button>
+            </Button>
           </InputContainer>
         </FormContainer>
       </div>

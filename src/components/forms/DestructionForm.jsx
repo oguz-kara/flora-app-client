@@ -3,6 +3,7 @@ import { FormContainer, InputContainer } from '../Container';
 import { useState } from 'react';
 import TableWithInputs from '../TableWithInputs';
 import Box from '../Box';
+import Button from '../Button';
 
 export default function DestructionForm() {
   const handleSubmit = (e) => {
@@ -32,9 +33,9 @@ export default function DestructionForm() {
             />
           </InputContainer>
           <InputContainer>
-            <button className="submit-form-button" type="submit">
-              SUBMIT
-            </button>
+          <Button className="bg-primary-color" type="submit">
+            SUBMIT
+          </Button>
           </InputContainer>
         </FormContainer>
       </Box>

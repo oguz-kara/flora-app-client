@@ -8,6 +8,7 @@ import TableWithInputs from '../TableWithInputs';
 import AddNewCustomerForm from './CustomerForm';
 import TextArea from '../TextArea';
 import Flex from '../Flex';
+import Button from '../Button';
 
 export default function CustomerPurchaseForm() {
   const [activeAddCustomerForm, setActiveAddCustomerForm] = useState(false);
@@ -49,13 +50,13 @@ export default function CustomerPurchaseForm() {
                   { value: '2', label: 'Meral able' },
                 ]}
               ></Select>
-              <button
-                data-tip="Add new customer"
-                className="add-new-button"
+              <Button
+                className="bg-secondary-color rounded-r"
+                type="submit"
                 onClick={handleAddNewCustomerClick}
               >
                 +
-              </button>
+              </Button>
               <ReactTooltip effect="solid" />
             </Flex>
           </InputContainer>

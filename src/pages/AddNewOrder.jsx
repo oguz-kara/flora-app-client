@@ -1,12 +1,13 @@
+import Box from '../components/Box';
 import AddNewOrderForm from '../components/forms/OrderForm';
 
 export default function AddNewOrder() {
   return (
-    <div className="add-new-order">
+    <Box className="min-h-screen">
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Orders {'>'} Add new order
       </h4>
       <AddNewOrderForm />
-    </div>
+    </Box>
   );
 }

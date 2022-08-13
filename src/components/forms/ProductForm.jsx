@@ -1,3 +1,4 @@
+import Flex from '../Flex';
 import RichEditor from '../RichEditor';
 import Label from '../Label';
 import TextBox from '../TextBox';
@@ -13,6 +14,8 @@ import AddBrandForm from './BrandForm';
 import Modal from '../Modal';
 import { useState } from 'react';
 import mergeClasses from '../../utils/mergeClasses';
+import Button from '../Button';
+import Box from '../Box';
 
 export default function ProductForm({ className, style }) {
   const [activeAddCategoryForm, setActiveAddCategoryForm] = useState(false);
@@ -50,7 +53,7 @@ export default function ProductForm({ className, style }) {
   };
 
   return (
-    <div
+    <Box
       style={style}
       className={mergeClasses(['add-product-form', className])}
     >
@@ -95,7 +98,7 @@ export default function ProductForm({ className, style }) {
         </InputContainer>
         <InputContainer>
           <Label>Category name (*):</Label>
-          <div className="flex">
+          <Flex>
             <Select
               placeholder="Select a product category. If category not exists you can create it by pressing '+' button."
               options={[
@@ -103,15 +106,9 @@ export default function ProductForm({ className, style }) {
                 { value: 'cicek', label: 'Cicek' },
               ]}
             ></Select>
-            <button
-              data-tip="Add new category"
-              className="add-new-button"
-              onClick={handleAddNewCategoryClick}
-            >
-              +
-            </button>
+            
             <ReactTooltip effect="solid" />
-          </div>
+          </Flex>
         </InputContainer>
         <InputContainer>
           <Label>Supplier name (*):</Label>
@@ -123,13 +120,14 @@ export default function ProductForm({ className, style }) {
                 { value: 2, label: 'Ilker Arma' },
               ]}
             ></Select>
-            <button
-              data-tip="Add new supplier"
-              className="add-new-button"
+            <Button
+              className="bg-secondary-color rounded-r"
+              data-tip="add new supplier"
+              type="submit"
               onClick={handleAddNewSupplierClick}
             >
               +
-            </button>
+            </Button>
             <ReactTooltip effect="solid" />
           </div>
         </InputContainer>
@@ -143,13 +141,14 @@ export default function ProductForm({ className, style }) {
                 { value: 2, label: '1051' },
               ]}
             ></Select>
-            <button
-              data-tip="Add new brand"
-              className="add-new-button"
+            <Button
+              className="bg-secondary-color rounded-r"
+              type="submit"
               onClick={handleAddNewBrandClick}
+              data-tip="add new brand"
             >
               +
-            </button>
+            </Button>
             <ReactTooltip effect="solid" />
           </div>
         </InputContainer>
@@ -173,9 +172,14 @@ export default function ProductForm({ className, style }) {
                 { value: 3, label: 'Package' },
               ]}
             ></Select>
-            <button data-tip="Add new unit" className="add-new-button">
+            <Button
+              className="bg-secondary-color rounded-r"
+              type="submit"
+              onClick={handleAddNewCategoryClick}
+              data-tip="add new unit"
+            >
               +
-            </button>
+            </Button>
             <ReactTooltip effect="solid" />
           </div>
         </InputContainer>
@@ -239,11 +243,11 @@ export default function ProductForm({ className, style }) {
           <RichEditor />
         </InputContainer>
         <InputContainer>
-          <button className="submit-form-button" type="submit">
+          <Button className="bg-primary-color" type="submit">
             SUBMIT
-          </button>
+          </Button>
         </InputContainer>
       </FormContainer>
-    </div>
+    </Box>
   );
 }

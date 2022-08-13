@@ -2,6 +2,7 @@ import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
 import TextArea from '../TextArea';
+import Button from '../Button';
 
 export default function BrandForm({ onSubmit, title = '', ...props }) {
   return (
@@ -13,9 +14,7 @@ export default function BrandForm({ onSubmit, title = '', ...props }) {
           <TextBox fullWidth placeholder="Add brand name..." />
         </InputContainer>
         <InputContainer>
-          <button className="submit-form-button" type="submit">
-            SUBMIT
-          </button>
+          <Button className="bg-primary-color" type="submit">SUBMIT</Button>
         </InputContainer>
       </FormContainer>
     </div>

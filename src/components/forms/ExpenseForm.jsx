@@ -3,6 +3,7 @@ import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
 import Select from '../Select';
 import TextArea from '../TextArea';
+import Button from '../Button';
 
 export default function ExpenseForm({ onSubmit, title = '', ...props }) {
   return (
@@ -35,9 +36,9 @@ export default function ExpenseForm({ onSubmit, title = '', ...props }) {
           <TextBox fullWidth placeholder="Expense amount for example $100" />
         </InputContainer>
         <InputContainer>
-          <button className="submit-form-button" type="submit">
+          <Button className="bg-primary-color" type="submit">
             SUBMIT
-          </button>
+          </Button>
         </InputContainer>
       </FormContainer>
     </div>

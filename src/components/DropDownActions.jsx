@@ -1,6 +1,4 @@
 import '../style/drop-down-actions.scss';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import mergeClasses from '../utils/mergeClasses';
 import Box from './Box';
 import DropDownMenu, { DropDownBody, DropDownHeader } from './DropDownMenu';

@@ -1,12 +1,13 @@
+import Box from '../components/Box';
 import CustomerReturn from '../components/forms/CustomerPurchaseForm';
 
 export default function AddNewCustomerPurchase() {
   return (
-    <div className="add-new-order">
+    <Box className="min-h-screen">
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Customers {'>'} Customer return
       </h4>
       <CustomerReturn />
-    </div>
+    </Box>
   );
 }
