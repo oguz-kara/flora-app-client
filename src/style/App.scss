@@ -93,3 +93,9 @@
     padding: 30px;
   }
 }
+
+@media only screen and (max-width: 366px) {
+  .flex-wrap-on-mobile {
+    flex-wrap: wrap;
+  }
+}

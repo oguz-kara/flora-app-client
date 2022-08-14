@@ -1,3 +1,4 @@
+import React from 'react';
 import mergeClasses from '../utils/mergeClasses';
 import { forwardRef } from 'react';
 import '../style/table.scss';
@@ -26,27 +27,41 @@ export function Th({ children, className, ...props }) {
   );
 }
 
-export const Tr = forwardRef(({ children, className, ...props }, ref) => {
-  const mergeClassListProp = () => {
-    if (className) {
-      return `tr ${className}`;
-    }
-    return 'tr';
-  };
-  return (
-    <tr className={mergeClassListProp()} {...props} ref={ref}>
-      {children}
-    </tr>
-  );
-});
+export const Tr = forwardRef(
+  ({ children, className, noBorder, ...props }, ref) => {
+    const mergeClassListProp = () => {
+      if (className) {
+        return `tr ${className}`;
+      }
+      return 'tr';
+    };
+    return (
+      <tr className={mergeClassListProp()} {...props} ref={ref}>
+        {children}
+      </tr>
+    );
+  }
+);
 
-export const Td = forwardRef(({ children, ...props }, ref) => {
-  return (
-    <td className="td" {...props} ref={ref}>
-      {children}
-    </td>
-  );
-});
+const dashedBorder = 'border-b border-dashed border-primary-color';
+
+export const Td = forwardRef(
+  ({ children, noBorder = false, className, ...props }, ref) => {
+    return (
+      <td
+        className={mergeClasses([
+          'td',
+          noBorder ? '' : dashedBorder,
+          className,
+        ])}
+        {...props}
+        ref={ref}
+      >
+        {children}
+      </td>
+    );
+  }
+);
 
 export default function Table({ children, className, ...props }) {
   return (

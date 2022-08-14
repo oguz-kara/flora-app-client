@@ -90,7 +90,7 @@ export default function ProductForm({ className, style }) {
       <FormContainer>
         <InputContainer>
           <Label>Barcode (?):</Label>
-          <TextBox fullWidth placeholder="Barcode, qrcode etc..." />
+          <TextBox id="barcode" name="barcode" fullWidth placeholder="Barcode, qrcode etc..." />
         </InputContainer>
         <InputContainer>
           <Label>Product name (*):</Label>

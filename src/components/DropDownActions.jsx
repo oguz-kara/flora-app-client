@@ -6,10 +6,7 @@ import Typography from './Typography';
 
 function Action({ name, children, className, ...props }) {
   return (
-    <button
-      className={mergeClasses(['action', 'hover-bg-light', className])}
-      {...props}
-    >
+    <button className={mergeClasses([className])} {...props}>
       {children}
     </button>
   );
@@ -17,13 +14,16 @@ function Action({ name, children, className, ...props }) {
 
 export default function DropDownActions({ data, header, className, ...props }) {
   return (
-    <Box className={mergeClasses(['dda-container', className])} {...props}>
+    <Box className={mergeClasses([className])} {...props}>
       <DropDownMenu>
         <DropDownHeader style={{ zIndex: 99 }}>{header}</DropDownHeader>
-        <DropDownBody className="background-dark">
+        <DropDownBody className="background-dark bg-primary-background-light">
           <Box>
             {data.map((item) => (
-              <Action className="p-10" onClick={(e) => item.action(e)}>
+              <Action
+                className={mergeClasses(['p-2', 'hover:bg-primary-color', 'w-full'])}
+                onClick={(e) => item.action(e)}
+              >
                 <Typography variant="small">{item.name}</Typography>
               </Action>
             ))}
