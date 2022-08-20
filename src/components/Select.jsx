@@ -65,6 +65,23 @@ const customStyles = {
   }),
 };
 
-export default function Select({ options, ...props }) {
-  return <ReactSelect styles={customStyles} options={options} {...props} />;
+export default function Select({ options, onChange, value, ...props }) {
+  const defaultValue = (options, value) => {
+    return options
+      ? options.find((option) => option.value === value)
+      : { label: null, value: null };
+  };
+
+  return (
+    <ReactSelect
+      styles={customStyles}
+      options={options}
+      onChange={(value) => {
+        console.log({ value });
+        onChange(value);
+      }}
+      value={defaultValue(options, value)}
+      {...props}
+    />
+  );
 }

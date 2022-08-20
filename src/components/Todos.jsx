@@ -10,10 +10,6 @@ export default function Todos({ data }) {
   const [todos, setTodos] = useState(data);
   const [inputTodo, setInputTodo] = useState('');
 
-  useEffect(() => {
-    console.log(inputTodo);
-  }, [inputTodo]);
-
   return (
     <>
       <Label>Add todo (?):</Label>
@@ -27,7 +23,8 @@ export default function Todos({ data }) {
           />
         </Box>
         <button
-          className="bg-primary-color px-2"
+          disabled={inputTodo.length < 1}
+          className="bg-primary-color px-2 disabled:opacity-50"
           onClick={(e) => {
             addNewTodo(
               { name: inputTodo, completed: false, id: Date.now() },
@@ -40,9 +37,11 @@ export default function Todos({ data }) {
         </button>
       </Flex>
       <Box>
-        <Typography className="my-3" variant="subtitle2">Todo list</Typography>
+        <Typography className="my-3" variant="subtitle2">
+          Todo list
+        </Typography>
       </Box>
-      <ul>
+      <ul className="overflow-scroll max-h-52">
         {todos.map((item) => (
           <li
             key={item.id}
@@ -88,7 +87,6 @@ function handleCompletedClick(e, id, state, setState) {
     return item;
   });
   setState(updatedState);
-  console.log({ state });
 }
 
 function handleDeleteClick(e, id, state, setState) {

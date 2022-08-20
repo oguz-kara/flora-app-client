@@ -1,3 +1,4 @@
+import { Form } from 'formik';
 import '../style/container.scss';
 import mergeClasses from '../utils/mergeClasses';
 
@@ -26,7 +27,10 @@ export function FormContainer({ center = false, ...props }) {
 
 export function InputContainer({ center = false, className, ...props }) {
   return (
-    <div className={mergeClasses(['input-group', className])} {...props}>
+    <div
+      className={mergeClasses(['input-group', className ? className : ''])}
+      {...props}
+    >
       {props.children}
     </div>
   );

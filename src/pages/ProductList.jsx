@@ -7,12 +7,8 @@ import Label from '../components/Label';
 import Table, { TBody, Td, Th, THead, Tr } from '../components/Table';
 import TextBox from '../components/TextBox';
 import { Link } from 'react-router-dom';
-import DropDownMenu, {
-  DropDownBody,
-  DropDownHeader,
-} from '../components/DropDownMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faClose } from '@fortawesome/free-solid-svg-icons';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import Button from '../components/Button';
 import Box from '../components/Box';

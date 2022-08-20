@@ -1,18 +1,14 @@
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useState, useEffect } from 'react';
+import toast from '../config/toast-message';
+import { forwardRef, useState } from 'react';
 import '../style/file-input-preview.scss';
 import Label from './Label';
 
-export default function FileInputPreview() {
+const FileInputPreview = forwardRef(({ onChange, ...props }, ref) => {
   const [preview, setPreview] = useState([]);
-
-  useEffect(() => {
-    console.log({ preview });
-  }, [preview]);
 
   const handleChange = (e) => {
     const currentFiles = e.target.files;
+    if (onChange) onChange(e);
     if (currentFiles.length > 10) {
       toast.error('Number of files cannot be greater then 10!');
       return;
@@ -24,7 +20,6 @@ export default function FileInputPreview() {
       }
     }
     setPreview(imageUrlList);
-    console.log({ imageUrlList, preview });
   };
   return (
     <>
@@ -33,12 +28,14 @@ export default function FileInputPreview() {
           Choose images to upload (PNG, JPG)
         </label>
         <input
+          ref={ref}
           onChange={handleChange}
           type="file"
-          id="image-uploads"
+          className="image-uploads"
           name="image-uploads"
           accept=".jpg, .jpeg, .png"
           multiple
+          {...props}
         />
       </div>
       <div className="image-preview">
@@ -64,4 +61,6 @@ export default function FileInputPreview() {
       </div>
     </>
   );
-}
+});
+
+export default FileInputPreview;
