@@ -1,24 +1,32 @@
-import ValidationErrorText from '../../components/ValidationErrorText';
+import Button from '../Button';
 import Label from '../Label';
 import TextBox from '../TextBox';
 import { FormContainer, InputContainer } from '../Container';
-import Button from '../Button';
+import TextArea from '../TextArea';
 import { useFormik } from 'formik';
-import brandSchema from '../../schemas/brand-schema';
+import unitSchema from '../../schemas/unit-schema';
+import ValidationErrorText from '../ValidationErrorText';
 
-export default function BrandForm({ onSubmit, title = '', ...props }) {
+export default function UnitForm({
+  onSubmit,
+  pending = false,
+  title = '',
+  ...props
+}) {
   const formik = useFormik({
     initialValues: {
       name: '',
+      value: '',
     },
-    validationSchema: brandSchema,
+    validationSchema: unitSchema,
     onSubmit: (values, { resetForm }) => {
       if (onSubmit) onSubmit(values);
       if (formik.isValid) resetForm();
     },
   });
+
   return (
-    <div className="add-brand-form" {...props}>
+    <div className="add-unit-form" {...props}>
       <h3 className="section-title">{title}</h3>
       <FormContainer onSubmit={formik.handleSubmit}>
         <InputContainer>
@@ -29,12 +37,24 @@ export default function BrandForm({ onSubmit, title = '', ...props }) {
             value={formik.values.name}
             onChange={formik.handleChange}
             fullWidth
-            placeholder="Add brand name..."
+            placeholder="Add unit name..."
           />
           <ValidationErrorText formik={formik} name="name" />
         </InputContainer>
         <InputContainer>
-          <Button onClick={() => {}} className="bg-primary-color" type="submit">
+          <Label>Value (*):</Label>
+          <TextBox
+            id="value"
+            name="value"
+            value={formik.values.value}
+            onChange={formik.handleChange}
+            fullWidth
+            placeholder="Add unit value..."
+          />
+          <ValidationErrorText formik={formik} name="value" />
+        </InputContainer>
+        <InputContainer>
+          <Button className="bg-primary-color" type="submit" pending={pending}>
             SUBMIT
           </Button>
         </InputContainer>

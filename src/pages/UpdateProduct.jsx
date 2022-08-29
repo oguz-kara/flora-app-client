@@ -1,13 +1,31 @@
-import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Box from '../components/Box';
 import { InputContainer } from '../components/Container';
 import ProductForm from '../components/forms/ProductForm';
 import Label from '../components/Label';
 import TextBox from '../components/TextBox';
+import convertToProductForm from '../utils/convertToProductForm';
+import useAxios from '../hooks/useAxios';
 
-export default function AddNewProduct() {
+export default function UpdateProduct() {
+  const { state } = useLocation();
   const [search, setSearch] = useState('');
-  if (search !== '?') {
+  const [product, setProduct] = useState('');
+
+  const getProductUnitsState = useAxios({
+    endpoint: '/product-unit',
+    method: 'get',
+  });
+
+  useEffect(() => {
+    const unitData = getProductUnitsState.response;
+    if (state && Object.keys(state).length > 0 && unitData) {
+      setProduct(convertToProductForm(state, unitData));
+    }
+  }, [state, getProductUnitsState.response]);
+
+  if (state && Object.keys(state).length <= 0) {
     return (
       <InputContainer>
         <Label>Search (?):</Label>
@@ -25,7 +43,7 @@ export default function AddNewProduct() {
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Products {'>'} Add new product
       </h4>
-      <ProductForm />
+      <ProductForm data={product} method="put" />
     </Box>
   );
 }

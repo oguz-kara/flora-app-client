@@ -4,19 +4,23 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { convertToRaw, ContentState, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function RichEditor({ value, setFieldValue }) {
-  const prepareDraft = (value) => {
-    const draft = htmlToDraft(value);
-    const contentState = ContentState.createFromBlockArray(draft.contentBlocks);
-    const editorState = EditorState.createWithContent(contentState);
-    return editorState;
-  };
-
+export default function RichEditor({
+  value = '',
+  initialValue = '',
+  setFieldValue,
+}) {
   const [editorState, setEditorState] = useState(
     value ? prepareDraft(value) : EditorState.createEmpty()
   );
+
+  useEffect(() => {
+    if (initialValue) {
+      setEditorState(prepareDraft(initialValue));
+      console.log(initialValue);
+    }
+  }, [initialValue]);
 
   const onEditorStateChange = (editorState) => {
     const forFormik = draftToHtml(
@@ -25,6 +29,13 @@ export default function RichEditor({ value, setFieldValue }) {
     setFieldValue(forFormik);
     setEditorState(editorState);
   };
+
+  function prepareDraft(value) {
+    const draft = htmlToDraft(value);
+    const contentState = ContentState.createFromBlockArray(draft.contentBlocks);
+    const editorState = EditorState.createWithContent(contentState);
+    return editorState;
+  }
 
   return (
     <Editor

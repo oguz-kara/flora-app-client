@@ -43,20 +43,10 @@ export const Tr = forwardRef(
   }
 );
 
-const dashedBorder = 'border-b border-dashed border-primary-color';
-
 export const Td = forwardRef(
   ({ children, noBorder = false, className, ...props }, ref) => {
     return (
-      <td
-        className={mergeClasses([
-          'td',
-          noBorder ? '' : dashedBorder,
-          className,
-        ])}
-        {...props}
-        ref={ref}
-      >
+      <td className={mergeClasses(['td', className])} {...props} ref={ref}>
         {children}
       </td>
     );

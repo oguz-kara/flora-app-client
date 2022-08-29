@@ -1,21 +1,19 @@
-import { useEffect } from 'react';
-import ReactSelect from 'react-select';
+import Async from 'react-select/async';
 
-const customStyles = {
+const getCustomStyles = (overrideStyles = {}) => ({
   container: (base, state) => ({
     ...base,
     flexGrow: 1,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
     color: '#ffffff',
-    margin: 0,
     padding: 0,
   }),
   input: (base, state) => ({
     ...base,
     color: '#ffffff',
-    margin: 0,
     padding: 0,
+    margin: 0,
   }),
   control: (base, state) => ({
     ...base,
@@ -23,14 +21,14 @@ const customStyles = {
     borderRadius: state.isFocused ? 3 : 3,
     border: state.isFocused ? 'none' : 'none',
     outline: state.isFocused ? '1px solid #388e3c' : 'none',
-    padding: '0.650rem',
-    margin: 0,
     minHeight: 0,
+    padding: '0.650rem',
   }),
   menu: (base) => ({
     ...base,
     borderRadius: 0,
-    margin: 0,
+    marginTop: 0,
+    padding: 0,
   }),
   menuList: (base) => ({
     ...base,
@@ -44,10 +42,13 @@ const customStyles = {
       backgroundColor: '#3c3e49',
     },
   }),
+  valueContainer: (base, state) => ({
+    padding: 0,
+    margin: 0,
+  }),
   singleValue: (base, state) => ({
     ...base,
     color: '#ffffff',
-    margin: 0,
     padding: 0,
   }),
   placeholder: (base, state) => ({
@@ -59,18 +60,11 @@ const customStyles = {
   multiValue: (styles, { data }) => ({
     ...styles,
     backgroundColor: '#3c3e49',
-    margin: 0,
     padding: 0,
   }),
   multiValueLabel: (styles, { data }) => ({
     ...styles,
     color: data.color,
-    margin: 0,
-    padding: 0,
-  }),
-  valueContainer: (styles, state) => ({
-    ...styles,
-    margin: 0,
     padding: 0,
   }),
   multiValueRemove: (styles, { data }) => ({
@@ -79,26 +73,33 @@ const customStyles = {
       backgroundColor: '#df4759',
     },
   }),
-  dropdownIndicator: (styles, state) => ({
-    ...styles,
-    padding: 0,
-    margin: 0,
-  }),
-  indicatorSeparator: (styles, state) => ({
-    ...styles,
-    display: 'none',
-  }),
-};
+  ...overrideStyles,
+});
 
-export default function Select({ options, onChange, value = '', ...props }) {
+export default function ASelect({
+  options,
+  onChange = () => {},
+  value = '',
+  customStyles = '',
+  loadOptions,
+  ...props
+}) {
   return (
-    <ReactSelect
-      styles={customStyles}
-      options={options}
+    <Async
+      cacheOptions
+      defaultOptions
+      components={{
+        DropdownIndicator: () => null,
+        IndicatorSeparator: () => null,
+      }}
+      placeholder=""
+      loadOptions={loadOptions}
+      getOptionLabel={(e) => e.name}
+      getOptionValue={(e) => e.id}
       onChange={(value) => {
         onChange(value);
       }}
-      value={value ? value : ''}
+      styles={getCustomStyles(customStyles ? customStyles : {})}
       {...props}
     />
   );

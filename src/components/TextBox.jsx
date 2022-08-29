@@ -1,10 +1,17 @@
 import '../style/text-box.scss';
+import mergeClasses from '../utils/mergeClasses';
 
-function NormalTextBox({ fullWidth, ...props }) {
-  const getClassList = () => {
-    return fullWidth ? 'textbox full-width' : 'textbox';
-  };
-  return <input className={getClassList()} type="text" {...props} />;
+function NormalTextBox({ fullWidth, className, ...props }) {
+  return (
+    <input
+      className={mergeClasses([
+        fullWidth ? 'textbox full-width' : 'textbox',
+        className,
+      ])}
+      type="text"
+      {...props}
+    />
+  );
 }
 
 function TextBoxWithIcon({ fullWidth, icon, ...props }) {
@@ -19,10 +26,10 @@ function TextBoxWithIcon({ fullWidth, icon, ...props }) {
   );
 }
 
-export default function TextBox({ icon, ...props }) {
+export default function TextBox({ icon, className, ...props }) {
   return icon ? (
     <TextBoxWithIcon icon={icon} {...props} />
   ) : (
-    <NormalTextBox {...props} />
+    <NormalTextBox className={mergeClasses(['p-2.5', className])} {...props} />
   );
 }

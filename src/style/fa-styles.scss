@@ -1,0 +1,28 @@
+@import './variables.scss';
+
+.fa-muted path {
+  color: $muted;
+}
+.fa-primary path {
+  color: $primary-color;
+}
+
+.fa-primary-light path {
+  color: $primary-light-color;
+}
+
+.fa-secondary path {
+  color: $secondary-color;
+}
+
+.fa-danger path {
+  color: $danger-color;
+}
+
+.fa-black path {
+  color: black;
+}
+
+.fa-secondary-6 path {
+  color: rgba($color: $secondary-color, $alpha: 0.6);
+}

@@ -12,7 +12,7 @@ export default function ValidationErrorText({ formik, name }) {
             : Object.keys(formik.errors[name]).map((key, index) => (
                 <Box key={index} className="text-danger-color">
                   {formik.errors[name][key]}
-                  {/* {console.log({ formikErr: formik.errors[name][key] })} */}
+                  {console.log({ formikErr: formik.errors[name][key] })}
                 </Box>
               ))}
         </Typography>

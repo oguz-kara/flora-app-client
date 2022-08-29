@@ -4,7 +4,6 @@ import { FormContainer, InputContainer } from '../Container';
 import Select from '../Select';
 import ReactTooltip from 'react-tooltip';
 import { useState } from 'react';
-import TableWithInputs from '../TableWithInputs';
 import AddNewCustomerForm from './CustomerForm';
 import TextArea from '../TextArea';
 import Flex from '../Flex';
@@ -69,22 +68,6 @@ export default function CustomerPurchaseForm() {
           </InputContainer>
           <InputContainer>
             <Label>Product list (*):</Label>
-            <TableWithInputs
-              headers={[
-                { name: 'barcode', input: true },
-                { name: 'name', input: true },
-                { name: 'unit', input: true },
-                { name: 'qty', input: true },
-                { name: 'supplier price', input: false },
-                { name: 'sale price', input: false },
-              ]}
-              initialValues={{
-                id: Date.now(),
-                name: '',
-                qty: '',
-                description: '',
-              }}
-            />
           </InputContainer>
           <InputContainer>
             <button className="submit-form-button" type="submit">

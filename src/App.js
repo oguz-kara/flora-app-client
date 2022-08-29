@@ -90,7 +90,7 @@ function App() {
               <Route
                 path="/supplier-new-purchase"
                 element={<AddSupplierPurchase />}
-              />{' '}
+              />
               <Route path="/add-new-expense" element={<AddNewExpense />} />
               <Route path="/expense-list" element={<ExpenseList />} />
               <Route

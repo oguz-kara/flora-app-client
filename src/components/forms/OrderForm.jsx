@@ -5,7 +5,6 @@ import Select from '../Select';
 import ReactTooltip from 'react-tooltip';
 import DatePicker from '../DatePicker';
 import { useState } from 'react';
-import TableWithInputs from '../TableWithInputs';
 import AddNewOrderForm from './CustomerForm';
 import Button from '../Button';
 
@@ -70,22 +69,9 @@ export default function OrderForm() {
           </InputContainer>
           <InputContainer>
             <Label>Order list (*):</Label>
-            <TableWithInputs
-              headers={[
-                { name: 'name', input: true },
-                { name: 'qty', input: true },
-                { name: 'description', input: true },
-              ]}
-              initialValues={{
-                id: Date.now(),
-                name: '',
-                qty: '',
-                description: '',
-              }}
-            />
           </InputContainer>
           <InputContainer>
-            <Button className="bg-primary-color" type="submit" pending>
+            <Button className="bg-primary-color" type="submit">
               SUBMIT
             </Button>
           </InputContainer>

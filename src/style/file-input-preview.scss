@@ -26,3 +26,12 @@
   height: 150px;
   object-fit: cover;
 }
+
+.image-preview__button-close {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50%;
+  &:hover {
+    background-color: $danger-color;
+  }
+}

@@ -1,6 +1,5 @@
+import useFetchImages from '../../hooks/useFetchImages';
 import axios from 'axios';
-import { getErrorMessage } from '../../utils/messages';
-import toast from '../../config/toast-message';
 import ValidationErrorText from '../ValidationErrorText';
 import Flex from '../Flex';
 import RichEditor from '../RichEditor';
@@ -14,112 +13,67 @@ import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons';
 import FileInputPreview from '../FileInputPreview';
 import AddCategoryForm from './CategoryForm';
 import AddSupplierForm from './SupplierForm';
+import AddUnitForm from './UnitForm';
 import AddBrandForm from './BrandForm';
 import Modal from '../Modal';
-import { useRef, useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import mergeClasses from '../../utils/mergeClasses';
 import Button from '../Button';
 import Box from '../Box';
 import productSchema from '../../schemas/product-schema';
 import { useFormik } from 'formik';
 import useAxios from '../../hooks/useAxios';
-import convertListToReactSelectOption from '../../utils/converToReactSelectOption';
+import { convertListToReactSelectOption } from '../../utils/converToReactSelectOption';
+import { isArrayAndHasItems } from '../../utils/checkTypes';
 
-export default function ProductForm({ className, style }) {
+export default function ProductForm({
+  className,
+  style,
+  method = 'post',
+  data = '',
+}) {
+  const fileListRef = useRef(null);
   const [activeAddCategoryForm, setActiveAddCategoryForm] = useState(false);
   const [activeAddBrandForm, setActiveAddBrandForm] = useState(false);
   const [activeAddSupplierForm, setActiveAddSupplierForm] = useState(false);
-  const [selectOptions, setSelectOptions] = useState({
-    categories: [],
-    brands: [],
-    suppliers: [],
-    unitList: [],
-  });
-  const [images, setImages] = useState('');
-  const fileListRef = useRef(null);
+  const [activeAddUnitForm, setActiveAddUnitForm] = useState(false);
 
-  const postProductState = useAxios('/products', 'post', {
-    headers: { multipart: true },
+  useEffect(() => {
+    console.log('re-render');
   });
 
-  const postCategoryState = useAxios('/categories', 'post');
+  const { images, fetch } = useFetchImages();
 
-  const postBrandState = useAxios('/brands', 'post');
-
-  const postSupplierState = useAxios('/suppliers', 'post');
-
-  const getCategoriesState = useAxios('/categories', 'get');
-
-  const getBrandsState = useAxios('/brands', 'get');
-
-  const getSuppliersState = useAxios('/suppliers', 'get');
-
-  const getProductUnitsState = useAxios('/product-unit', 'get');
-
-  useEffect(() => {
-    
-  }, [
-    postProductState.response,
-    postProductState.error,
-  ]);
-
-  useEffect(() => {
-    if (isDataExistsInResponse(getCategoriesState)) {
-      setSelectOptions((prev) => ({
-        ...prev,
-        categories: convertListToReactSelectOption(
-          getCategoriesState.response.data.data
-        ),
-      }));
-    } else {
-      toast.error(getErrorMessage(getCategoriesState.error));
-    }
-  }, [getCategoriesState.response, getCategoriesState.error]);
-
-  useEffect(() => {
-    if (isDataExistsInResponse(getBrandsState)) {
-      setSelectOptions((prev) => ({
-        ...prev,
-        brands: convertListToReactSelectOption(
-          getBrandsState.response.data.data
-        ),
-      }));
-    } else {
-      toast.error(getErrorMessage(getBrandsState.error));
-    }
-  }, [getBrandsState.response, getBrandsState.error]);
-
-  useEffect(() => {
-    if (isDataExistsInResponse(getSuppliersState)) {
-      setSelectOptions((prev) => ({
-        ...prev,
-        suppliers: convertListToReactSelectOption(
-          getSuppliersState.response.data.data
-        ),
-      }));
-    } else {
-      toast.error(getErrorMessage(getSuppliersState.error));
-    }
-  }, [getSuppliersState.response, getSuppliersState.error]);
-
-  useEffect(() => {
-    if (isDataExistsInResponse(getProductUnitsState)) {
-      setSelectOptions((prev) => ({
-        ...prev,
-        unitList: convertListToReactSelectOption(
-          getProductUnitsState.response.data.data
-        ),
-      }));
-    } else {
-      toast.error(getErrorMessage(getProductUnitsState.error));
-    }
-  }, [getProductUnitsState.response, getProductUnitsState.error]);
-
-  const handleFilesChange = (e) => {
-    const files = e.target.files;
-    let myFiles = Array.from(files);
-    formik.setFieldValue('imageListData', myFiles);
-  };
+  const postProductState = useAxios({
+    method: method,
+    endpoint: '/products',
+    options: {
+      headers: { multipart: true },
+    },
+  });
+  const postCategoryState = useAxios({
+    endpoint: '/categories',
+    method: 'post',
+  });
+  const postBrandState = useAxios({ endpoint: '/brands', method: 'post' });
+  const postSupplierState = useAxios({
+    endpoint: '/suppliers',
+    method: 'post',
+  });
+  const postProductUnitState = useAxios({
+    endpoint: '/product-unit',
+    method: 'post',
+  });
+  const getCategoriesState = useAxios({
+    endpoint: '/categories',
+    method: 'get',
+  });
+  const getBrandsState = useAxios({ endpoint: '/brands', method: 'get' });
+  const getSuppliersState = useAxios({ endpoint: '/suppliers', method: 'get' });
+  const getProductUnitsState = useAxios({
+    endpoint: '/product-unit',
+    method: 'get',
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -142,9 +96,9 @@ export default function ProductForm({ className, style }) {
     validationSchema: productSchema,
     onSubmit: async (values, { resetForm }) => {
       axios.defaults.withCredentials = true;
-
       const formData = new FormData();
 
+      formData.append('id', values.id);
       formData.append('barcode', values.barcode);
       formData.append('categoryId', values.categoryId.value);
       formData.append('supplierId', values.supplierId.value);
@@ -161,14 +115,19 @@ export default function ProductForm({ className, style }) {
             price: values.mainUnitPrice,
           },
           sub: [
-            ...values.subUnitList.map((item) => {
-              return {
-                unitId: item.value,
-                price: values.subUnitPriceList.find(
-                  (price) => price.id === item.value
-                ).price,
-              };
-            }),
+            ...(function () {
+              if (!values.subUnitList) return [];
+              return values.subUnitList.map((item) => {
+                return {
+                  unitId: item.value,
+                  price: parseFloat(
+                    values.subUnitPriceList.find(
+                      (price) => price.id === item.value
+                    ).price
+                  ),
+                };
+              });
+            })(),
           ],
         })
       );
@@ -183,14 +142,10 @@ export default function ProductForm({ className, style }) {
       } else {
         formData.append('imageListData', '');
       }
-      // postProductState.exec(formData);
-      // axios
-      //   .post('http://localhost:8000/api/products', formData)
-      //   .then((res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((err) => console.log(err));
-      postProductState.exec(formData);
+      console.log({ barcode: values.barcode });
+      console.log({ barcodeData: data.barcode });
+
+      postProductState.refetch({ data: formData });
 
       if (
         postProductState.response &&
@@ -201,63 +156,60 @@ export default function ProductForm({ className, style }) {
     },
   });
 
-  const handleAddNewCategoryClick = (e) => {
-    e.preventDefault();
-    setActiveAddCategoryForm(true);
-  };
-
-  const handleCategoryFormSubmit = (values) => {
-    const formData = {
-      name: values.name,
-      description: values.description,
-    };
-    postCategoryState.exec(formData);
-
+  useEffect(() => {
     if (
-      postCategoryState.response &&
-      Object.keys(postCategoryState.response).length > 0
+      Object.keys(data).length > 0 &&
+      getCategoriesState.response &&
+      getBrandsState.response &&
+      getSuppliersState.response
     ) {
-      setActiveAddCategoryForm(false);
+      const { imageListData, ...rest } = data;
+      fetch(imageListData.map((item) => item.src));
+
+      formik.setValues({
+        ...rest,
+        categoryId: {
+          value: data.categoryId,
+          label: getCategoriesState.response.find(
+            (item) => item.id === data.categoryId
+          ).name,
+        },
+        brandId: {
+          value: data.brandId,
+          label: getBrandsState.response.find(
+            (item) => item.id === data.brandId
+          ).name,
+        },
+        supplierId: {
+          value: data.supplierId,
+          label: getSuppliersState.response.find(
+            (item) => item.id === data.supplierId
+          ).name,
+        },
+        mainUnit: {
+          value: data.mainUnit,
+          label: getProductUnitsState.response.find(
+            (item) => item.id === data.mainUnit
+          ).name,
+        },
+      });
     }
+  }, [
+    data,
+    getCategoriesState.response,
+    getBrandsState.response,
+    getSuppliersState.response,
+    getProductUnitsState.response,
+  ]);
+
+  const handleSubmit = (values, refetch, close) => {
+    refetch({ data: values });
+    close(false);
   };
 
-  const handleAddNewBrandClick = (e) => {
+  const handleAddNewClick = (e, fnc) => {
     e.preventDefault();
-    setActiveAddBrandForm(true);
-  };
-
-  const handleBrandFormSubmit = (values) => {
-    const formData = {
-      name: values.name,
-    };
-    postBrandState.exec(formData);
-    if (
-      postBrandState.response &&
-      Object.keys(postBrandState.response).length > 0
-    ) {
-      setActiveAddBrandForm(false);
-    }
-  };
-
-  const handleAddNewSupplierClick = (e) => {
-    e.preventDefault();
-    setActiveAddSupplierForm(true);
-  };
-
-  const handleSupplierFormSubmit = (values) => {
-    const formData = {
-      name: values.name,
-      companyName: values.companyName,
-      credit: values.credit,
-      phoneNumber: values.phoneNumber,
-    };
-    postSupplierState.exec(formData);
-    if (
-      postSupplierState.response &&
-      Object.keys(postSupplierState.response).length > 0
-    ) {
-      setActiveAddSupplierForm(false);
-    }
+    fnc(true);
   };
 
   return (
@@ -271,7 +223,13 @@ export default function ProductForm({ className, style }) {
       >
         <AddCategoryForm
           style={{ padding: 20 }}
-          onSubmit={(values) => handleCategoryFormSubmit(values)}
+          onSubmit={(values) =>
+            handleSubmit(
+              values,
+              postCategoryState.refetch,
+              setActiveAddCategoryForm
+            )
+          }
           title="-> New category form"
           className="card"
           pending={postCategoryState.loading}
@@ -280,7 +238,9 @@ export default function ProductForm({ className, style }) {
       <Modal active={activeAddBrandForm} setActive={setActiveAddBrandForm}>
         <AddBrandForm
           style={{ padding: 20 }}
-          onSubmit={(values) => handleBrandFormSubmit(values)}
+          onSubmit={(values) =>
+            handleSubmit(values, postBrandState.refetch, setActiveAddBrandForm)
+          }
           title="-> New brand form"
           className="card"
         />
@@ -291,12 +251,32 @@ export default function ProductForm({ className, style }) {
       >
         <AddSupplierForm
           style={{ padding: 20 }}
-          onSubmit={(e) => handleSupplierFormSubmit(e)}
+          onSubmit={(values) =>
+            handleSubmit(
+              values,
+              postSupplierState.refetch,
+              setActiveAddSupplierForm
+            )
+          }
           title="-> New supplier form"
           className="card"
         />
       </Modal>
-      <FormContainer onSubmit={formik.handleSubmit}>
+      <Modal active={activeAddUnitForm} setActive={setActiveAddUnitForm}>
+        <AddUnitForm
+          style={{ padding: 20 }}
+          onSubmit={(values) =>
+            handleSubmit(
+              values,
+              postProductUnitState.refetch,
+              setActiveAddUnitForm
+            )
+          }
+          title="-> New unit form"
+          className="card"
+        />
+      </Modal>
+      <FormContainer onSubmit={formik.handleSubmit} method={method}>
         <InputContainer>
           <Label>Barcode (?):</Label>
           <TextBox
@@ -327,17 +307,17 @@ export default function ProductForm({ className, style }) {
             <Select
               id="categoryId"
               name="categoryId"
-              value={formik.values.categoryId}
+              value={formik.values.categoryId ? formik.values.categoryId : ''}
               onChange={(value) => {
                 formik.setFieldValue('categoryId', value);
               }}
               placeholder="Select a product category. If category not exists you can create it by pressing '+' button."
-              options={selectOptions.categories}
+              options={getSelectOptionsFrom(getCategoriesState.response)}
             ></Select>
             <Button
               className="bg-secondary-color rounded-r"
               data-tip="add new supplier"
-              onClick={handleAddNewCategoryClick}
+              onClick={(e) => handleAddNewClick(e, setActiveAddCategoryForm)}
             >
               +
             </Button>
@@ -354,12 +334,12 @@ export default function ProductForm({ className, style }) {
               value={formik.values.supplierId}
               onChange={(value) => formik.setFieldValue('supplierId', value)}
               placeholder="Select a product supplier. If supplier not exists you can create it by pressing '+' button."
-              options={selectOptions.suppliers}
+              options={getSelectOptionsFrom(getSuppliersState.response)}
             ></Select>
             <Button
               className="bg-secondary-color rounded-r"
               data-tip="add new supplier"
-              onClick={handleAddNewSupplierClick}
+              onClick={(e) => handleAddNewClick(e, setActiveAddSupplierForm)}
             >
               +
             </Button>
@@ -376,11 +356,11 @@ export default function ProductForm({ className, style }) {
               value={formik.values.brandId}
               onChange={(value) => formik.setFieldValue('brandId', value)}
               placeholder="Select a product brand. If brand not exists you can create it by pressing '+' button."
-              options={selectOptions.brands}
+              options={getSelectOptionsFrom(getBrandsState.response)}
             ></Select>
             <Button
               className="bg-secondary-color rounded-r"
-              onClick={handleAddNewBrandClick}
+              onClick={(e) => handleAddNewClick(e, setActiveAddBrandForm)}
               data-tip="add new brand"
             >
               +
@@ -410,9 +390,13 @@ export default function ProductForm({ className, style }) {
               id="mainUnit"
               name="mainUnit"
               value={formik.values.mainUnit}
-              onChange={(value) => formik.setFieldValue('mainUnit', value)}
+              onChange={(value) => {
+                formik.setFieldValue('mainUnit', value);
+              }}
               placeholder="Select a main unit. If main unit not exists you can create it by pressing '+' button."
-              options={selectOptions.unitList.filter((item) => {
+              options={getSelectOptionsFrom(
+                getProductUnitsState.response
+              ).filter((item) => {
                 let subItem;
                 for (subItem of formik.values.subUnitList) {
                   if (subItem.value === item.value) {
@@ -424,7 +408,7 @@ export default function ProductForm({ className, style }) {
             ></Select>
             <Button
               className="bg-secondary-color rounded-r"
-              onClick={handleAddNewCategoryClick}
+              onClick={(e) => handleAddNewClick(e, setActiveAddUnitForm)}
               data-tip="add new unit"
             >
               +
@@ -452,24 +436,24 @@ export default function ProductForm({ className, style }) {
           <Flex>
             <Select
               id="subUnitList"
-              name="setSubUnitList"
+              name="subUnitList"
               value={formik.values.subUnitList}
               onChange={(value) => {
-                const priceList = value.map((item, index) => {
+                const priceList = value.map((item) => {
                   return {
-                    id: value[index].value,
-                    label: value[index].label,
-                    price: 0,
+                    id: item.value,
+                    label: item.label,
+                    price: '',
                   };
                 });
-                formik.setFieldValue('subUnitPriceList', priceList);
                 formik.setFieldValue('subUnitList', value);
+                formik.setFieldValue('subUnitPriceList', priceList);
               }}
-              placeholder="Select a sub units. If sub units not exists you can create it by pressing '+' button."
+              placeholder="Select a sub unit. If sub units not exists you can create it by pressing '+' button."
               isMulti
-              options={selectOptions.unitList.filter(
-                (item) => item.value !== formik.values.mainUnit.value
-              )}
+              options={getSelectOptionsFrom(
+                getProductUnitsState.response
+              ).filter((item) => item.value !== formik.values.mainUnit.value)}
             ></Select>
           </Flex>
           <ValidationErrorText formik={formik} name="subUnitList" />
@@ -548,14 +532,20 @@ export default function ProductForm({ className, style }) {
             ref={fileListRef}
             id="image-uploads"
             name="imageListData"
-            value={images}
-            onChange={(e) => handleFilesChange(e)}
+            initialImages={
+              Array.isArray(images) && images.length > 0 ? images : ''
+            }
+            onChange={(files) => {
+              let myFiles = Array.from(files);
+              formik.setFieldValue('imageListData', myFiles);
+            }}
           />
         </InputContainer>
         <InputContainer>
           <RichEditor
             setFieldValue={(val) => formik.setFieldValue('description', val)}
             value={formik.values.description}
+            initialValue={data && data.description}
           />
           <ValidationErrorText formik={formik} name="description" />
         </InputContainer>
@@ -578,6 +568,9 @@ export default function ProductForm({ className, style }) {
   );
 }
 
-function isDataExistsInResponse(obj) {
-  return obj && obj.response && obj.response.data && obj.response.data.data;
+function getSelectOptionsFrom(data) {
+  if (isArrayAndHasItems(data)) {
+    return convertListToReactSelectOption(data);
+  }
+  return [];
 }

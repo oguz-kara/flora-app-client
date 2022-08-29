@@ -5,7 +5,7 @@ export default function MessageBlock({ title, icon, className }) {
   return (
     <div
       className={mergeClasses([
-        'flex items-center p-5 w-full h-full',
+        'flex items-center justify-center p-5 w-full h-full',
         className,
       ])}
     >
@@ -13,7 +13,7 @@ export default function MessageBlock({ title, icon, className }) {
       <div>
         <Typography
           className={mergeClasses(['text-muted', title.className])}
-          variant="h6"
+          variant="h5"
         >
           {title.text}
         </Typography>

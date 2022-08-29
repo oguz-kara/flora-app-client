@@ -8,8 +8,11 @@ import Typography from './Typography';
 export default function Button({
   className,
   pending,
-  type,
+  type = 'button',
   children,
+  variant = 'button',
+  visibility = true,
+  onClick,
   ...props
 }) {
   const [width, setWidth] = useState(0);
@@ -46,12 +49,16 @@ export default function Button({
 
   return (
     <button
+      onClick={(e) => {
+        if (onClick) onClick(e);
+      }}
       ref={ref}
       type={type ? type : ''}
       className={mergeClasses([
         'button',
         pending ? 'button--disabled' : '',
         className,
+        visibility ? 'visible' : 'invisible',
       ])}
       disabled={pending ? true : false}
       style={
@@ -67,7 +74,10 @@ export default function Button({
       {showLoader ? (
         <FontAwesomeIcon className="spinner" icon={faCircleNotch} spin />
       ) : (
-        <Typography className={pending ? 'muted' : ''} variant="button">
+        <Typography
+          className={mergeClasses([pending ? 'muted' : '', 'font-bold'])}
+          variant={variant}
+        >
           {children}
         </Typography>
       )}

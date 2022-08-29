@@ -48,6 +48,7 @@ button:active {
   border: none;
   outline: none;
 }
+
 button {
   border: none;
   cursor: pointer;
@@ -136,4 +137,18 @@ button {
 
 .react-datepicker__day {
   color: $primary-text !important;
+}
+
+.recharts-tooltip-wrapper {
+  border: $secondary-color;
+  outline: $secondary-color;
+  .recharts-default-tooltip {
+    background-color: $primary-background-light !important;
+  }
+  .recharts-tooltip-label {
+    font-size: 12px;
+  }
+  .recharts-tooltip-item-list {
+    font-size: 12px;
+  }
 }
