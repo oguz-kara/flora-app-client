@@ -1,28 +1,80 @@
+import Typography from '../Typography';
 import Select from '../Select';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Modal from '../Modal';
 import SalesListFinalForm from './SaleListFinalForm';
 import { FormContainer, InputContainer } from '../Container';
 import Label from '../Label';
-import Button from '../Button';
 import Table, { TBody, Td, Th, THead, Tr } from '../Table';
 import TextBox from '../TextBox';
 import AsyncSelect from '../AsyncSelect';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useKey } from 'rooks';
 
 export default function SaleListForm({ children, ...props }) {
   const [activeSalesListForm, setActiveSalesListForm] = useState(false);
+  const productUnit = useSelector((state) => state.productUnit);
+  const [productList, setProductList] = useState([]);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  const converToListProduct = (product) => {
-    return {
-      barcode: product.barcode,
-      name: product.name,
-      unit: [
-        {
-          value: product.unit.main.unitId,
-        },
-      ],
-    };
+  const asyncRef = useRef(null);
+
+  const convertToListProduct = (product = {}, unitList = []) => {
+    const result = {};
+    if (unitList && unitList.length > 0 && Object.keys(product).length > 0) {
+      result.barcode = product.barcode;
+      result.name = {
+        label: product.name,
+        value: product.id,
+      };
+      result.unitList = [
+        ...[product.productUnitData.main, ...product.productUnitData.sub].map(
+          (unit) => {
+            const fUnit = unitList.find((item) => item.id === unit.unitId);
+            if (fUnit) {
+              return {
+                value: fUnit.id,
+                label: fUnit.name,
+                price: unit.price,
+                amount: fUnit.value,
+              };
+            }
+            return '';
+          }
+        ),
+      ];
+      result.unit = result.unitList[0];
+      result.quantity = 1;
+      result.price = product.productUnitData.main.price;
+      result.profit =
+        result.quantity * result.unit.price -
+        product.supplierPrice * result.unit.amount;
+      result.total = result.quantity * result.unit.price;
+      return result;
+    }
+    return [];
+  };
+
+  const isSaveAble = (product) => {
+    return product.name && product.unit;
+  };
+
+  const saveProduct = (product) => {
+    setProductList((prev) => [...prev, product]);
+  };
+
+  const onSaveProduct = () => {
+    if (isSaveAble(currentProduct)) saveProduct(currentProduct);
+  };
+
+  const productOptions = async (inputValue) => {
+    return axios
+      .get(`http://localhost:8000/api/products/search?name=${inputValue}`, {
+        withCredentials: true,
+      })
+      .then((res) => res.data.data)
+      .catch((e) => console.log(e));
   };
 
   const handleSalesListClick = (e) => {
@@ -34,6 +86,11 @@ export default function SaleListForm({ children, ...props }) {
     e.preventDefault();
     setActiveSalesListForm(false);
   };
+
+  useEffect(() => {
+    console.log({ currentProduct, productList });
+  }, [currentProduct, productList]);
+
   return (
     <FormContainer
       {...props}
@@ -69,29 +126,128 @@ export default function SaleListForm({ children, ...props }) {
           <TBody>
             <Tr>
               <Td>
-                <TextBox className="w-32 max-w-sm" />
+                <TextBox
+                  className="w-32 max-w-sm"
+                  value={currentProduct.barcode}
+                />
               </Td>
               <Td>
-                <AsyncSelect className="w-32 max-w-sm h-full" />
+                <AsyncSelect
+                  ref={asyncRef}
+                  value={{ nothing: 'nothung' }}
+                  className="w-32 max-w-sm h-full"
+                  cacheOptions
+                  defaultOptions
+                  loadOptions={productOptions}
+                  onChange={(value) => {
+                    setCurrentProduct(
+                      convertToListProduct(value, productUnit.productUnitList)
+                    );
+                  }}
+                />
+              </Td>
+              <Td
+                onKeyDown={(e) => {
+                  console.log(e.keyCode === 13);
+                }}
+              >
+                <Select
+                  placeholder=""
+                  onKeyDown={(e) => console.log(e.keyCode)}
+                  className="w-32 max-w-sm h-full"
+                  disabled={
+                    currentProduct && currentProduct.unit ? false : true
+                  }
+                  value={
+                    currentProduct && currentProduct.unit
+                      ? currentProduct.unit
+                      : ''
+                  }
+                  options={
+                    currentProduct &&
+                    currentProduct.unitList &&
+                    currentProduct.unitList.length > 0
+                      ? currentProduct.unitList
+                      : []
+                  }
+                  onChange={(value) => {
+                    setCurrentProduct((prev) => ({ ...prev, unit: value }));
+                  }}
+                />
               </Td>
               <Td>
-                <Select placeholder="" className="w-32 max-w-sm h-full" />
+                <TextBox
+                  disabled={
+                    Object.keys(currentProduct).length >= 3 ? false : true
+                  }
+                  className="w-32 max-w-sm"
+                  value={
+                    Object.keys(currentProduct).length > 0
+                      ? currentProduct.quantity
+                      : ''
+                  }
+                  onChange={(e) =>
+                    setCurrentProduct((prev) => {
+                      try {
+                        return {
+                          ...prev,
+                          quantity:
+                            e.target.value === ''
+                              ? 0.01
+                              : parseFloat(e.target.value),
+                        };
+                      } catch (e) {
+                        return prev;
+                      }
+                    })
+                  }
+                  onKeyDown={(e) => {
+                    if (e.keyCode === 13) {
+                      saveProduct(currentProduct);
+                      setCurrentProduct({});
+                      asyncRef.current.focus();
+                    }
+                  }}
+                />
               </Td>
               <Td>
-                <TextBox className="w-32 max-w-sm" />
+                ₺
+                <Typography className="inline bold" variant="body1">
+                  {currentProduct && currentProduct.price
+                    ? currentProduct.price
+                    : ''}
+                </Typography>
+              </Td>
+              <Td>
+                ₺
+                <Typography className="inline bold" variant="body1">
+                  {currentProduct && currentProduct.profit
+                    ? currentProduct.profit
+                    : ''}
+                </Typography>
+              </Td>
+              <Td>
+                ₺
+                <Typography className="inline bold" variant="body1">
+                  {currentProduct && currentProduct.total
+                    ? currentProduct.total
+                    : ''}
+                </Typography>
               </Td>
             </Tr>
+            {productList.map((product, index) => (
+              <Tr key={index}>
+                <Td></Td>
+                <Td>{product.name.label}</Td>
+                <Td>{product.unit.label}</Td>
+                <Td>{product.quantity}</Td>
+                <Td>{product.price}</Td>
+                <Td>{product.profit}</Td>
+                <Td>{product.total}</Td>
+              </Tr>
+            ))}
           </TBody>
         </Table>
-      </InputContainer>
-      <InputContainer>
-        <Button
-          onClick={handleSalesListClick}
-          className="bg-primary-color"
-          type="button"
-        >
-          SUBMIT
-        </Button>
       </InputContainer>
     </FormContainer>
   );

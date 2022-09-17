@@ -1,17 +1,19 @@
 import DatePicker from '../components/DatePicker';
-import { InputContainer } from '../components/Container';
 import Flex from '../components/Flex';
 import Typography from '../components/Typography';
 import '../style/product-sale-list.scss';
 import Table, { THead, Tr, Th, TBody, Td } from '../components/Table';
 import { Link } from 'react-router-dom';
 import Box from '../components/Box';
-import { useState } from 'react';
 import Label from '../components/Label';
 import Button from '../components/Button';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function ProductSaleList() {
   const [date, setDate] = useState(new Date());
+  const productUnit = useSelector((state) => state.productUnit);
+
   return (
     <Box className="min-h-screen">
       <Typography variant="h4" style={{ marginBottom: 30, color: 'white' }}>

@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -27,6 +28,8 @@
     "react-tooltip": "^4.2.21",
     "recharts": "^2.1.13",
     "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
+    "rooks": "^7.0.0",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

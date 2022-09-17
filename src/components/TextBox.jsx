@@ -1,13 +1,15 @@
+import React from 'react';
 import '../style/text-box.scss';
 import mergeClasses from '../utils/mergeClasses';
 
-function NormalTextBox({ fullWidth, className, ...props }) {
+function NormalTextBox({ fullWidth, className, disabled, ...props }) {
   return (
     <input
       className={mergeClasses([
         fullWidth ? 'textbox full-width' : 'textbox',
         className,
       ])}
+      disabled={disabled}
       type="text"
       {...props}
     />
@@ -26,10 +28,23 @@ function TextBoxWithIcon({ fullWidth, icon, ...props }) {
   );
 }
 
-export default function TextBox({ icon, className, ...props }) {
-  return icon ? (
-    <TextBoxWithIcon icon={icon} {...props} />
-  ) : (
-    <NormalTextBox className={mergeClasses(['p-2.5', className])} {...props} />
-  );
-}
+const TextBox = React.forwardRef(
+  ({ icon, className, disabled = false, ...props }, ref) => {
+    return icon ? (
+      <TextBoxWithIcon icon={icon} ref={ref} {...props} />
+    ) : (
+      <NormalTextBox
+        className={mergeClasses([
+          'p-2.5',
+          disabled ? 'bg-primary-background-300' : 'bg-primary-background',
+          className,
+        ])}
+        disabled={disabled}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
+export default TextBox;

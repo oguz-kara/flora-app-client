@@ -1,6 +1,7 @@
+import React from 'react';
 import Async from 'react-select/async';
 
-const getCustomStyles = (overrideStyles = {}) => ({
+const getCustomStyles = (overrideStyles = {}, options) => ({
   container: (base, state) => ({
     ...base,
     flexGrow: 1,
@@ -17,7 +18,7 @@ const getCustomStyles = (overrideStyles = {}) => ({
   }),
   control: (base, state) => ({
     ...base,
-    background: '#1e1e2d',
+    background: options.disabled ? '#1e1e2d30' : '#1e1e2d',
     borderRadius: state.isFocused ? 3 : 3,
     border: state.isFocused ? 'none' : 'none',
     outline: state.isFocused ? '1px solid #388e3c' : 'none',
@@ -43,8 +44,9 @@ const getCustomStyles = (overrideStyles = {}) => ({
     },
   }),
   valueContainer: (base, state) => ({
-    padding: 0,
+    ...base,
     margin: 0,
+    padding: 0,
   }),
   singleValue: (base, state) => ({
     ...base,
@@ -76,31 +78,43 @@ const getCustomStyles = (overrideStyles = {}) => ({
   ...overrideStyles,
 });
 
-export default function ASelect({
-  options,
-  onChange = () => {},
-  value = '',
-  customStyles = '',
-  loadOptions,
-  ...props
-}) {
-  return (
-    <Async
-      cacheOptions
-      defaultOptions
-      components={{
-        DropdownIndicator: () => null,
-        IndicatorSeparator: () => null,
-      }}
-      placeholder=""
-      loadOptions={loadOptions}
-      getOptionLabel={(e) => e.name}
-      getOptionValue={(e) => e.id}
-      onChange={(value) => {
-        onChange(value);
-      }}
-      styles={getCustomStyles(customStyles ? customStyles : {})}
-      {...props}
-    />
-  );
-}
+const AsyncSelect = React.forwardRef(
+  (
+    {
+      options,
+      onChange = () => {},
+      value = '',
+      customStyles = '',
+      loadOptions,
+      disabled = false,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Async
+        ref={ref}
+        components={{
+          DropdownIndicator: () => null, // Remove dropdown icon
+          IndicatorSeparator: () => null, // Remove separator
+        }}
+        isDisabled={disabled}
+        cacheOptions
+        defaultOptions
+        placeholder=""
+        loadOptions={loadOptions}
+        getOptionLabel={(e) => e.name}
+        getOptionValue={(e) => e.id}
+        onChange={(value) => {
+          onChange(value);
+        }}
+        styles={getCustomStyles(customStyles ? customStyles : {}, {
+          disabled: disabled,
+        })}
+        {...props}
+      />
+    );
+  }
+);
+
+export default AsyncSelect;

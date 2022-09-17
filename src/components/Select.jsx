@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import React from 'react';
 import ReactSelect from 'react-select';
 
-const customStyles = {
+const customStyles = (customStyles = {}, options) => ({
   container: (base, state) => ({
     ...base,
     flexGrow: 1,
@@ -19,7 +19,7 @@ const customStyles = {
   }),
   control: (base, state) => ({
     ...base,
-    background: '#1e1e2d',
+    background: options.disabled ? '#1e1e2d30' : '#1e1e2d',
     borderRadius: state.isFocused ? 3 : 3,
     border: state.isFocused ? 'none' : 'none',
     outline: state.isFocused ? '1px solid #388e3c' : 'none',
@@ -88,18 +88,25 @@ const customStyles = {
     ...styles,
     display: 'none',
   }),
-};
+  ...customStyles,
+});
 
-export default function Select({ options, onChange, value = '', ...props }) {
-  return (
-    <ReactSelect
-      styles={customStyles}
-      options={options}
-      onChange={(value) => {
-        onChange(value);
-      }}
-      value={value ? value : ''}
-      {...props}
-    />
-  );
-}
+const Select = React.forwardRef(
+  ({ options, onChange, value = '', disabled = false, ...props }, ref) => {
+    return (
+      <ReactSelect
+        ref={ref}
+        isDisabled={disabled}
+        styles={customStyles({}, { disabled: disabled })}
+        options={options}
+        onChange={(value) => {
+          onChange(value);
+        }}
+        value={value ? value : ''}
+        {...props}
+      />
+    );
+  }
+);
+
+export default Select;

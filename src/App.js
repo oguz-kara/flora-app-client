@@ -1,7 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 import './style/App.scss';
 import { Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopBar from './components/TopBar';
 import SideBar from './components/SideBar';
 import Layout from './components/Layout';
@@ -35,10 +35,16 @@ import ProductDetails from './pages/ProductDetails';
 import SupplierDetails from './pages/SupplierDetails';
 import NewReturnList from './pages/NewReturnList';
 import Box from './components/Box';
+import { fetchUnits } from './redux/productUnit';
+import { useDispatch } from 'react-redux';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [test, setTest] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUnits());
+  }, [dispatch]);
 
   const openSidebar = () => {
     setSidebarOpen(true);
