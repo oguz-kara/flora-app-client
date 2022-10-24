@@ -46,6 +46,7 @@
 .actions {
   display: flex;
   max-width: 300px;
+  z-index: 1;
 }
 
 .actions__notifications {
@@ -105,9 +106,9 @@
   margin: 0;
   padding: 0;
   margin-bottom: 4px;
+  color: $primary-text-4;
 }
 .actions__content div {
-  color: $primary-text-4;
   font-size: 12px;
 }
 

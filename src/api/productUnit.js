@@ -6,7 +6,7 @@ export const fetchAll = async () => {
       withCredentials: true,
     });
     return {
-      response: response.data,
+      response: response && response.data && response.data,
       error: null,
     };
   } catch (err) {

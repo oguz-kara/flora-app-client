@@ -13,8 +13,8 @@ export const fetchUnits = createAsyncThunk(
   'productUnit/fetchUnits',
   async () => {
     return fetchAll()
-      .then((res) => res.response.data)
-      .catch((e) => console.log(e));
+      .then((res) => res && res.response && res.response.data)
+      .catch((e) => e);
   }
 );
 

@@ -42,10 +42,10 @@ export default function ProductSaleList() {
       <h4 style={{ marginBottom: 30, color: 'white' }}>
         Sales {'>'} Product sales
       </h4>
-      <Box className="border-b-2 border-solid border-primary-color-muted mb-10">
+      <Flex className="flex-col border-b-2 border-solid border-primary-color-muted mb-10">
         <Typography variant="h6">Filters</Typography>
-        <Flex className="items-center justify-between">
-          <Flex className="items-center">
+        <Box>
+          <Flex className="flex-col gap-2">
             <Label>by date</Label>
             <DatePicker
               className="inline-block"
@@ -53,11 +53,11 @@ export default function ProductSaleList() {
               onChange={(date) => setDate(date)}
             />
           </Flex>
-          <Box>
+          <Box className="my-4">
             <Button className="bg-primary-color">apply</Button>
           </Box>
-        </Flex>
-      </Box>
+        </Box>
+      </Flex>
       <Table>
         <THead>
           <Tr>

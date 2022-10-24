@@ -18,7 +18,6 @@ export default function RichEditor({
   useEffect(() => {
     if (initialValue) {
       setEditorState(prepareDraft(initialValue));
-      console.log(initialValue);
     }
   }, [initialValue]);
 

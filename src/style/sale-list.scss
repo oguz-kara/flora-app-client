@@ -10,15 +10,17 @@
 .sale-list__list-item {
   position: relative;
   display: flex;
+  flex-direction: column;
   background-color: $primary-background;
   margin-bottom: 30px;
   padding: 40px;
 }
 
-.sale-list__list-item__left {
-  flex: 1;
-  border-right: 1px groove $primary-text-1;
+.sale-list__list-item__top {
+  border-bottom: 1px groove $primary-text-1;
   max-height: 150px;
+  display: block;
+  margin-bottom: 50px;
 }
 
 .sale-list__info {
@@ -30,7 +32,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  border-bottom-right-radius: 5px;
   background-color: $primary-light-color;
   font-size: 14px;
   font-weight: bold;
@@ -46,8 +47,24 @@
 .sale-list__info__value {
 }
 
-.sale-list__list-item__right {
-  flex: 2;
+.sale-list__list-item__products {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 200ms ease-in;
+}
+
+.sale-list__list-item__products.active {
+  max-height: 3000px;
+  overflow: auto;
+}
+
+.sale-list_icon-container {
+  transition: transform 200ms ease-out;
+  display: inline-block;
+}
+
+.sale-list_icon-container.active {
+  transform: rotateX(-180deg);
 }
 
 @media only screen and (max-width: 766px) {

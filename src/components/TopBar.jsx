@@ -8,8 +8,13 @@ import {
   faCircleUser,
 } from '@fortawesome/free-solid-svg-icons';
 import AccountMenu from './AccountMenu';
+import { useContext } from 'react';
+import UserContext from '../context/userContext';
+import { useEffect } from 'react';
 
 export default function TopBar({ onMenuClick }) {
+  const [user, setUser] = useContext(UserContext);
+
   return (
     <>
       <div className="topbar">
@@ -29,7 +34,7 @@ export default function TopBar({ onMenuClick }) {
                 />
               </div>
               <div className="actions__content">
-                <Typography variant="h4" className="actions__title">Hasan Kara</Typography>
+                <Typography variant="h1">{user.name}</Typography>
                 <div className="actions__subtitle">Founder</div>
               </div>
               <div className="actions__drop-down">

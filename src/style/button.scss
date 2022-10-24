@@ -8,8 +8,39 @@
 
 .button--disabled {
   background-color: $muted !important;
+  cursor: unset;
 }
 
 .button--muted {
   color: gray !important;
+}
+
+.btn-filled {
+  background-color: $primary-color;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+}
+
+.btn-outlined {
+  border-width: 2px;
+  border-color: $primary-color;
+  border-style: groove;
+  border-radius: 5px;
+  padding: 5px 12px;
+}
+
+.danger-outlined {
+  border-width: 2px;
+  border-color: $danger-color;
+  border-style: groove;
+  border-radius: 5px;
+  padding: 5px 12px;
+}
+
+.danger-filled {
+  background-color: $danger-color;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
 }

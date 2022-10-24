@@ -95,7 +95,7 @@ export default function ProductList() {
           />
         </InputContainer>
       </FormContainer>
-      <Container>
+      <Container className="overflow-x-auto">
         <Flex>
           <Button
             onClick={() => setActiveVerifyPasswordForm(true)}

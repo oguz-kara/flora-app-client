@@ -1,3 +1,5 @@
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 import Typography from '../Typography';
 import Select from '../Select';
 import { useEffect, useRef, useState } from 'react';
@@ -10,7 +12,7 @@ import TextBox from '../TextBox';
 import AsyncSelect from '../AsyncSelect';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { useKey } from 'rooks';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function SaleListForm({ children, ...props }) {
   const [activeSalesListForm, setActiveSalesListForm] = useState(false);
@@ -23,6 +25,7 @@ export default function SaleListForm({ children, ...props }) {
   const convertToListProduct = (product = {}, unitList = []) => {
     const result = {};
     if (unitList && unitList.length > 0 && Object.keys(product).length > 0) {
+      result.id = product.id;
       result.barcode = product.barcode;
       result.name = {
         label: product.name,
@@ -87,10 +90,6 @@ export default function SaleListForm({ children, ...props }) {
     setActiveSalesListForm(false);
   };
 
-  useEffect(() => {
-    console.log({ currentProduct, productList });
-  }, [currentProduct, productList]);
-
   return (
     <FormContainer
       {...props}
@@ -146,14 +145,9 @@ export default function SaleListForm({ children, ...props }) {
                   }}
                 />
               </Td>
-              <Td
-                onKeyDown={(e) => {
-                  console.log(e.keyCode === 13);
-                }}
-              >
+              <Td>
                 <Select
                   placeholder=""
-                  onKeyDown={(e) => console.log(e.keyCode)}
                   className="w-32 max-w-sm h-full"
                   disabled={
                     currentProduct && currentProduct.unit ? false : true
@@ -237,13 +231,38 @@ export default function SaleListForm({ children, ...props }) {
             </Tr>
             {productList.map((product, index) => (
               <Tr key={index}>
-                <Td></Td>
+                <Td>{product.barcode}</Td>
                 <Td>{product.name.label}</Td>
                 <Td>{product.unit.label}</Td>
                 <Td>{product.quantity}</Td>
                 <Td>{product.price}</Td>
                 <Td>{product.profit}</Td>
                 <Td>{product.total}</Td>
+                <Td>
+                  <button
+                    onClick={() => {
+                      setProductList((prev) =>
+                        prev.filter((item) => item.id !== product.id)
+                      );
+                    }}
+                    type="button"
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </Td>
+                <Td>
+                  <button
+                    onClick={() => {
+                      setCurrentProduct(product);
+                      setProductList((prev) =>
+                        prev.filter((item) => item.id !== product.id)
+                      );
+                    }}
+                    type="button"
+                  >
+                    <FontAwesomeIcon icon={faPen} />
+                  </button>
+                </Td>
               </Tr>
             ))}
           </TBody>

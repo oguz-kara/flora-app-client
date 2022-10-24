@@ -142,8 +142,6 @@ export default function ProductForm({
       } else {
         formData.append('imageListData', '');
       }
-      console.log({ barcode: values.barcode });
-      console.log({ barcodeData: data.barcode });
 
       postProductState.refetch({ data: formData });
 

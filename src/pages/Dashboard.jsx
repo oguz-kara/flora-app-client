@@ -290,8 +290,6 @@ export default function Dashboard() {
             </Flex>
           </Flex>
         </Card>
-        <Card className="flex-1"></Card>
-        <Card className="flex-1"></Card>
       </Flex>
     </Box>
   );

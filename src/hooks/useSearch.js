@@ -16,7 +16,6 @@ export default function useSearch({
     if (searchTerm !== '') {
       const delayDebounceFn = setTimeout(() => {
         refetch({ params: params, query: { name: searchTerm } });
-        console.log({ response });
       }, 250);
       return () => clearTimeout(delayDebounceFn);
     } else {

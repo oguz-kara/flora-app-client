@@ -4,7 +4,7 @@ import AddNewCustomerPaymentForm from '../components/forms/CustomerPaymentForm';
 export default function AddNewCustomerPayment() {
   return (
     <Box className="min-h-screen">
-      <h4 style={{ marginBottom: 30, color: 'white' }}>
+      <h4 style={{ marginBottom: 30, color: 'white', fontWeight: 'bold' }}>
         Customers {'>'} Add new customer payment
       </h4>
       <AddNewCustomerPaymentForm />

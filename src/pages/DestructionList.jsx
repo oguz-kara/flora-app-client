@@ -37,8 +37,8 @@ export default function DestructionList({ props }) {
         Destructions {'>'} Destruction list
       </h4>
       <ul style={{ listStyleType: 'none' }}>
+        <div className="font-bold border-b border-solid border-primary-color">17 July 2021, 21:00 pm</div>
         <li style={{ position: 'relative' }}>
-          <div className="tag">17 July 2021, 21:00 pm</div>
           <Table style={{ padding: '30px' }}>
             <THead>
               <Tr>

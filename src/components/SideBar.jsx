@@ -168,7 +168,7 @@ export default function Sidebar({ open, onOverlayClick }) {
                   <li className="sidebar__link-list-item">
                     <NavLink to="/supplier-list" onClick={onOverlayClick}>
                       <FontAwesomeIcon icon={faList} />
-                      <span className="sidebar__link-text">Customer list</span>
+                      <span className="sidebar__link-text">Supplier list</span>
                     </NavLink>
                   </li>
                   <li className="sidebar__link-list-item">

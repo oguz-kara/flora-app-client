@@ -40,7 +40,7 @@ export default function SupplierPurchaseForm() {
         <FormContainer onSubmit={handleSubmit}>
           <InputContainer>
             <Label>Supplier name (*):</Label>
-            <div className="flex-box">
+            <div className="flex">
               <Select
                 placeholder="Select a supplier name..."
                 options={[

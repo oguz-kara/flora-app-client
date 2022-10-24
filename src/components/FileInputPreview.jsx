@@ -14,7 +14,6 @@ const FileInputPreview = forwardRef(
 
     useEffect(() => {
       setFiles(initialImages);
-      console.log('initialimages');
     }, [initialImages]);
 
     const handleChange = (e) => {
@@ -37,7 +36,6 @@ const FileInputPreview = forwardRef(
         }
       }
       setPreview(imageUrlList);
-      console.log('files.length not greater then zero!');
     }, [files]);
 
     return (
@@ -98,7 +96,6 @@ const FileInputPreview = forwardRef(
 export default FileInputPreview;
 
 function getImageList(initialImages, preview) {
-  console.log({ initialImages, preview });
   if (Array.isArray(initialImages) && initialImages.length > 0) {
     return initialImages;
   } else {

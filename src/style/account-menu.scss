@@ -14,7 +14,6 @@
   align-items: center;
   margin-bottom: 15px;
 }
-
 .account-menu__separator {
   border-bottom: 1px solid $border-color;
 }
@@ -74,6 +73,11 @@
   font-size: 18px;
   font-weight: 500;
   color: $primary-text;
+}
+
+.account-menu__list-content__title:hover {
+  text-decoration: underline;
+  color: $primary-color;
 }
 
 .account-menu__list-content__subtitle {

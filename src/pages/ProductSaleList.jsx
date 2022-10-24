@@ -21,8 +21,8 @@ export default function ProductSaleList() {
       </Typography>
       <Box className="border-b-2 border-solid border-primary-color-muted mb-10">
         <Typography variant="h6">Filters</Typography>
-        <Flex className="items-center justify-between">
-          <Flex className="items-center">
+        <Flex className="items-center justify-between flex-wrap gap-2">
+          <Flex className="items-center gap-2">
             <Label>by date</Label>
             <DatePicker
               className="inline-block"
@@ -31,7 +31,7 @@ export default function ProductSaleList() {
             />
           </Flex>
           <Box>
-            <Button className="bg-primary-color">apply</Button>
+            <Button className="bg-primary-color mb-2">apply</Button>
           </Box>
         </Flex>
       </Box>

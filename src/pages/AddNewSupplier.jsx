@@ -4,7 +4,7 @@ import AddNewSupplierForm from '../components/forms/SupplierForm';
 export default function AddNewCustomer() {
   return (
     <Box className="min-h-screen">
-      <h4 style={{ marginBottom: 30, color: 'white' }}>
+      <h4 style={{ marginBottom: 30, color: 'white', fontWeight: 'bold' }}>
         Suppliers {'>'} Add new supplier
       </h4>
       <AddNewSupplierForm />

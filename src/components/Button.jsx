@@ -6,28 +6,18 @@ import mergeClasses from '../utils/mergeClasses';
 import Typography from './Typography';
 
 export default function Button({
-  className,
+  className = 'btn',
   pending,
   type = 'button',
   children,
-  variant = 'button',
+  variant = 'btn-filled',
   visibility = true,
   onClick,
+  disabled,
   ...props
 }) {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
   const ref = useRef(null);
-
-  useEffect(() => {
-    if (ref.current && ref.current.getBoundingClientRect().width) {
-      setWidth(ref.current.getBoundingClientRect().width);
-    }
-    if (ref.current && ref.current.getBoundingClientRect().height) {
-      setHeight(ref.current.getBoundingClientRect().height);
-    }
-  }, [children]);
 
   useEffect(() => {
     if (pending) {
@@ -57,18 +47,12 @@ export default function Button({
       className={mergeClasses([
         'button',
         pending ? 'button--disabled' : '',
-        className,
         visibility ? 'visible' : 'invisible',
+        disabled ? 'button--disabled' : '',
+        getVariant(variant),
+        className,
       ])}
       disabled={pending ? true : false}
-      style={
-        width && height
-          ? {
-              width: `${width}px`,
-              height: `${height}px`,
-            }
-          : {}
-      }
       {...props}
     >
       {showLoader ? (
@@ -76,11 +60,28 @@ export default function Button({
       ) : (
         <Typography
           className={mergeClasses([pending ? 'muted' : '', 'font-bold'])}
-          variant={variant}
+          // variant={variant}
         >
           {children}
         </Typography>
       )}
     </button>
   );
+}
+
+function getVariant(variant = 'filled') {
+  switch (variant) {
+    case 'filled':
+      return 'btn-filled';
+    case 'outlined':
+      return 'btn-outlined';
+    case 'transparent':
+      return '';
+    case 'danger-outlined':
+      return 'danger-outlined';
+    case 'danger-filled':
+      return 'danger-filled';
+    default:
+      return '';
+  }
 }

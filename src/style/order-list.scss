@@ -1,23 +1,17 @@
 @import './variables.scss';
 
-.order-list {
-}
-
 .order-list__list {
   list-style-type: none;
 }
 
 .order-list__list-item {
   position: relative;
-  display: flex;
   background-color: $primary-background;
   margin-bottom: 30px;
   padding: 40px;
 }
 
 .order-list__list-item__left {
-  flex: 1;
-  border-right: 1px groove $primary-text-1;
   max-height: 150px;
 }
 
@@ -27,11 +21,7 @@
 
 .order-list__date {
   padding: 5px;
-  position: absolute;
-  top: 0;
-  left: 0;
   border-bottom-right-radius: 5px;
-  background-color: $primary-light-color;
   font-size: 14px;
   font-weight: bold;
 }
@@ -43,11 +33,16 @@
   font-weight: bold;
 }
 
-.order-list__info__value {
+.order-list__list-item__orders {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 200ms ease-in;
 }
 
-.order-list__list-item__right {
-  flex: 2;
+.order-list__list-item__orders.active {
+  max-height: 3000px;
+  overflow-x: auto;
+  margin-top: 40px;
 }
 
 @media only screen and (max-width: 766px) {

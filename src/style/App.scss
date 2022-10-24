@@ -1,10 +1,12 @@
 @import 'variables.scss';
 
 .App {
+  overflow-x: hidden;
 }
 
 .main {
   padding: 50px 50px 50px 360px;
+  max-width: 1200px;
 }
 
 .right-side {

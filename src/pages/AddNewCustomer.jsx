@@ -5,9 +5,9 @@ import Box from '../components/Box';
 export default function AddNewCustomer() {
   return (
     <Box className="min-h-screen">
-      <Typography variant="h4" className="mb-5">
+      <h4 style={{ marginBottom: 30, color: 'white', fontWeight: 'bold' }}>
         Customers {'>'} Add new customer
-      </Typography>
+      </h4>
       <AddNewCustomerForm />
     </Box>
   );
